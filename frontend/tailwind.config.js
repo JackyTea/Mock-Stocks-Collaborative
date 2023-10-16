@@ -1,13 +1,9 @@
+/** @type {import('tailwindcss').Config} */
 module.exports = {
-  purge: ['./src/**/*.{js,jsx,ts,tsx}', './public/index.html'],
-  darkMode: 'class',
+  content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
+  darkMode: "class",
   theme: {
     extend: {},
   },
-  variants: {
-    extend: {
-      opacity: ['disabled'],
-    }
-  },
-  plugins: [require('tailwindcss-font-inter')],
-}
+  plugins: [],
+};
