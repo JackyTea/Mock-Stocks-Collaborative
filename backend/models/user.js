@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose';
 
 const userSchema = mongoose.Schema({
   id: {
@@ -7,22 +7,22 @@ const userSchema = mongoose.Schema({
   name: {
     type: String,
     required: true,
-    match: [/^[a-zA-Z\s]*$/]
+    match: [/^[a-zA-Z\s]*$/],
   },
   email: {
     type: String,
     required: true,
-    match: [/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/]
+    match: [/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/],
   },
   password: {
     type: String,
-    required: true
+    required: true,
   },
   coins: {
     type: Number,
     required: true,
-    min: 0
-  }
+    min: 0,
+  },
 });
 
 let User = mongoose.model('User', userSchema);

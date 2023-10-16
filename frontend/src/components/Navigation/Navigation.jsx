@@ -1,11 +1,11 @@
-import React, { useState, useEffect, useCallback, useRef } from "react";
-import { Link, NavLink, useNavigate, useLocation } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import decode from "jwt-decode";
-import ToggleTheme from "../ToggleTheme/ToggleTheme";
-import { getUserInfo } from "../../actions/auth";
-import { LOGOUT } from "../../constants/actions";
-import DefaultAvatarImage from "../../assets/images/avatar.jpg";
+import React, { useState, useEffect, useCallback, useRef } from 'react';
+import { Link, NavLink, useNavigate, useLocation } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import decode from 'jwt-decode';
+import ToggleTheme from '../ToggleTheme/ToggleTheme';
+import { getUserInfo } from '../../actions/auth';
+import { LOGOUT } from '../../constants/actions';
+import DefaultAvatarImage from '../../assets/images/avatar.jpg';
 
 const Navigation = () => {
   const dispatch = useDispatch();
@@ -14,12 +14,12 @@ const Navigation = () => {
   const container = useRef(null);
   const [showDropdown, setShowDropdown] = useState(false);
   const [menuHidden, setMenuHidden] = useState(true);
-  const [user, setUser] = useState(JSON.parse(localStorage.getItem("profile")));
+  const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
 
   const logout = useCallback(() => {
     dispatch({ type: LOGOUT });
     setUser(null);
-    history("/auth");
+    history('/auth');
   }, [dispatch, history]);
 
   useEffect(() => {
@@ -38,7 +38,7 @@ const Navigation = () => {
       }
       dispatch(getUserInfo());
     }
-    setUser(JSON.parse(localStorage.getItem("profile")));
+    setUser(JSON.parse(localStorage.getItem('profile')));
   }, [user?.token, location, logout, dispatch]);
 
   useEffect(() => {
@@ -48,19 +48,19 @@ const Navigation = () => {
         setShowDropdown(false);
       }
     };
-    window.addEventListener("click", handleOutsideClick);
-    return () => window.removeEventListener("click", handleOutsideClick);
+    window.addEventListener('click', handleOutsideClick);
+    return () => window.removeEventListener('click', handleOutsideClick);
   }, [showDropdown, container]);
 
   useEffect(() => {
     const handleEscape = (event) => {
       if (!showDropdown) return;
-      if (event.key === "Escape") {
+      if (event.key === 'Escape') {
         setShowDropdown(false);
       }
     };
-    document.addEventListener("keyup", handleEscape);
-    return () => document.removeEventListener("keyup", handleEscape);
+    document.addEventListener('keyup', handleEscape);
+    return () => document.removeEventListener('keyup', handleEscape);
   }, [showDropdown]);
 
   return (
@@ -78,7 +78,7 @@ const Navigation = () => {
             </div>
 
             <div className="flex md:hidden">
-              <ToggleTheme styleSet={"h-5 w-5 mx-4"} />
+              <ToggleTheme styleSet={'h-5 w-5 mx-4'} />
               {menuHidden ? (
                 <button
                   onClick={() => setMenuHidden(false)}
@@ -122,8 +122,8 @@ const Navigation = () => {
           <div
             className={
               menuHidden
-                ? "flex-1 md:flex md:items-center md:justify-between hidden"
-                : "flex-1 md:flex md:items-center md:justify-between"
+                ? 'flex-1 md:flex md:items-center md:justify-between hidden'
+                : 'flex-1 md:flex md:items-center md:justify-between'
             }
           >
             <div className="flex flex-col -mx-4 md:flex-row md:items-center md:mx-8">
@@ -133,8 +133,8 @@ const Navigation = () => {
                 to="/"
                 className={({ isActive }) =>
                   isActive
-                    ? "text-blue-500 dark:text-blue-400 font-bold"
-                    : "px-2 py-1 mx-2 mt-2 text-sm font-medium text-gray-700 transition-colors duration-200 transform rounded-md md:mt-0 dark:text-gray-200 hover:bg-gray-300 dark:hover:bg-gray-700"
+                    ? 'text-blue-500 dark:text-blue-400 font-bold'
+                    : 'px-2 py-1 mx-2 mt-2 text-sm font-medium text-gray-700 transition-colors duration-200 transform rounded-md md:mt-0 dark:text-gray-200 hover:bg-gray-300 dark:hover:bg-gray-700'
                 }
               >
                 Home
@@ -145,8 +145,8 @@ const Navigation = () => {
                 to="/guide"
                 className={({ isActive }) =>
                   isActive
-                    ? "text-blue-500 dark:text-blue-400 font-bold"
-                    : "px-2 py-1 mx-2 mt-2 text-sm font-medium text-gray-700 transition-colors duration-200 transform rounded-md md:mt-0 dark:text-gray-200 hover:bg-gray-300 dark:hover:bg-gray-700"
+                    ? 'text-blue-500 dark:text-blue-400 font-bold'
+                    : 'px-2 py-1 mx-2 mt-2 text-sm font-medium text-gray-700 transition-colors duration-200 transform rounded-md md:mt-0 dark:text-gray-200 hover:bg-gray-300 dark:hover:bg-gray-700'
                 }
               >
                 Guide
@@ -157,8 +157,8 @@ const Navigation = () => {
                 to="/markets"
                 className={({ isActive }) =>
                   isActive
-                    ? "text-blue-500 dark:text-blue-400 font-bold"
-                    : "px-2 py-1 mx-2 mt-2 text-sm font-medium text-gray-700 transition-colors duration-200 transform rounded-md md:mt-0 dark:text-gray-200 hover:bg-gray-300 dark:hover:bg-gray-700"
+                    ? 'text-blue-500 dark:text-blue-400 font-bold'
+                    : 'px-2 py-1 mx-2 mt-2 text-sm font-medium text-gray-700 transition-colors duration-200 transform rounded-md md:mt-0 dark:text-gray-200 hover:bg-gray-300 dark:hover:bg-gray-700'
                 }
               >
                 Markets
@@ -170,8 +170,8 @@ const Navigation = () => {
                   to="/purchased"
                   className={({ isActive }) =>
                     isActive
-                      ? "text-blue-500 dark:text-blue-400 font-bold"
-                      : "px-2 py-1 mx-2 mt-2 text-sm font-medium text-gray-700 transition-colors duration-200 transform rounded-md md:mt-0 dark:text-gray-200 hover:bg-gray-300 dark:hover:bg-gray-700"
+                      ? 'text-blue-500 dark:text-blue-400 font-bold'
+                      : 'px-2 py-1 mx-2 mt-2 text-sm font-medium text-gray-700 transition-colors duration-200 transform rounded-md md:mt-0 dark:text-gray-200 hover:bg-gray-300 dark:hover:bg-gray-700'
                   }
                 >
                   Investments
@@ -188,8 +188,8 @@ const Navigation = () => {
                           alt="avatar"
                         />
                       </div>
-                      {String(user?.result.name).split(" ")[0] ||
-                        String(user?.result.name).split(" ")[1]}{" "}
+                      {String(user?.result.name).split(' ')[0] ||
+                        String(user?.result.name).split(' ')[1]}{' '}
                       &nbsp;&nbsp;&nbsp;
                       <span className="relative inline-block px-3 py-1 font-semibold text-yellow-900 leading-tight">
                         <span
@@ -224,7 +224,7 @@ const Navigation = () => {
             </div>
 
             <div className="md:flex items-center mt-4 md:mt-0 hidden">
-              <ToggleTheme styleSet={"h-5 w-5 mx-4"} />
+              <ToggleTheme styleSet={'h-5 w-5 mx-4'} />
               {user?.result ? (
                 <div className="flex items-center justify-center flex-row w-full">
                   <span className="relative inline-block px-3 py-1 font-semibold text-yellow-900 leading-tight">
@@ -238,8 +238,8 @@ const Navigation = () => {
                   </span>
 
                   <span className="sm:w-full px-2 py-1 mr-2 mt-2 text-sm font-medium text-gray-700 transition-colors duration-200 transform rounded-md md:mt-0 dark:text-gray-200">
-                    {String(user?.result.name).split(" ")[0] ||
-                      String(user?.result.name).split(" ")[1]}
+                    {String(user?.result.name).split(' ')[0] ||
+                      String(user?.result.name).split(' ')[1]}
                   </span>
 
                   <div

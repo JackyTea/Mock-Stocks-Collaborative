@@ -1,6 +1,6 @@
-import React from "react";
-import { Link, useNavigate } from "react-router-dom";
-import InvestmentPrice from "../../InvestmentPrice/InvestmentPrice";
+import React from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import InvestmentPrice from '../../InvestmentPrice/InvestmentPrice';
 
 const PurchaseListView = (props) => {
   const { socket, purchases } = props;

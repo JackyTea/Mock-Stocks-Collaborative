@@ -5,22 +5,34 @@ const TransactionsSkeleton = () => {
         <table className="table-auto leading-normal">
           <thead>
             <tr>
-              <th scope="col" className="w-1/6 px-5 py-3 bg-gray-50 dark:bg-gray-800  border-b border-gray-200 dark:border-gray-800 text-gray-800  dark:text-white text-left text-xs uppercase font-normal">
+              <th
+                scope="col"
+                className="w-1/6 px-5 py-3 bg-gray-50 dark:bg-gray-800  border-b border-gray-200 dark:border-gray-800 text-gray-800  dark:text-white text-left text-xs uppercase font-normal"
+              >
                 Type
               </th>
-              <th scope="col" className=" hidden md:table-cell w-1/6 px-5 py-3 bg-gray-50 dark:bg-gray-800  border-b border-gray-200 dark:border-gray-800 text-gray-800  dark:text-white text-left text-xs uppercase font-normal">
+              <th
+                scope="col"
+                className=" hidden md:table-cell w-1/6 px-5 py-3 bg-gray-50 dark:bg-gray-800  border-b border-gray-200 dark:border-gray-800 text-gray-800  dark:text-white text-left text-xs uppercase font-normal"
+              >
                 Shares
               </th>
-              <th scope="col" className="w-1/6 px-5 py-3 bg-gray-50 dark:bg-gray-800  border-b border-gray-200 dark:border-gray-800 text-gray-800  text-left dark:text-white text-xs uppercase font-normal">
+              <th
+                scope="col"
+                className="w-1/6 px-5 py-3 bg-gray-50 dark:bg-gray-800  border-b border-gray-200 dark:border-gray-800 text-gray-800  text-left dark:text-white text-xs uppercase font-normal"
+              >
                 Ticker
               </th>
-              <th scope="col" className="w-1/6 px-5 py-3 bg-gray-50 dark:bg-gray-800  border-b border-gray-200 dark:border-gray-800 text-gray-800  text-left dark:text-white text-xs uppercase font-normal">
+              <th
+                scope="col"
+                className="w-1/6 px-5 py-3 bg-gray-50 dark:bg-gray-800  border-b border-gray-200 dark:border-gray-800 text-gray-800  text-left dark:text-white text-xs uppercase font-normal"
+              >
                 Date
               </th>
             </tr>
           </thead>
           <tbody>
-            {[...Array(5).keys()].map(index => (
+            {[...Array(5).keys()].map((index) => (
               <tr key={index}>
                 <td className="bg-white dark:bg-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600">
                   <div className="animate-pulse flex space-x-4">
@@ -73,6 +85,6 @@ const TransactionsSkeleton = () => {
       </div>
     </div>
   );
-}
+};
 
 export default TransactionsSkeleton;

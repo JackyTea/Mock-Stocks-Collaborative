@@ -18,12 +18,12 @@ const purchasedStockSchema = mongoose.Schema({
   shares: {
     type: Number,
     required: true,
-    min: 0
+    min: 0,
   },
   initialInvestment: {
     type: Number,
-    required: true
-  }
+    required: true,
+  },
 });
 
 var PurchasedStock = mongoose.model('PurchasedStock', purchasedStockSchema);

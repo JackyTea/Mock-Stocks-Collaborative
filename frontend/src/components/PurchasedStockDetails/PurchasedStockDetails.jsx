@@ -1,18 +1,18 @@
-import React, { useEffect } from "react";
-import { Link } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { useLocation } from "react-router-dom";
-import socketIOClient from "socket.io-client";
-import { getStock } from "../../actions/stocks";
-import { getPurchase } from "../../actions/purchased";
-import { useParams } from "react-router";
-import CurrentPrice from "../CurrentPrice/CurrentPrice";
-import InvestmentPrice from "../InvestmentPrice/InvestmentPrice";
-import PurchasedStockDetailsSkeleton from "./PurchasedStockDetailsSkeleton";
+import React, { useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { useLocation } from 'react-router-dom';
+import socketIOClient from 'socket.io-client';
+import { getStock } from '../../actions/stocks';
+import { getPurchase } from '../../actions/purchased';
+import { useParams } from 'react-router';
+import CurrentPrice from '../CurrentPrice/CurrentPrice';
+import InvestmentPrice from '../InvestmentPrice/InvestmentPrice';
+import PurchasedStockDetailsSkeleton from './PurchasedStockDetailsSkeleton';
 
 const PurchasedStockDetails = (props) => {
   const socket = socketIOClient(import.meta.env.VITE_STOCKS_API, {
-    transports: ["websocket", "polling", "flashsocket"],
+    transports: ['websocket', 'polling', 'flashsocket'],
   });
   const purchase = useSelector((state) => state.purchasedReducer);
   const stock = useSelector((state) => state.stocksReducer);
@@ -43,8 +43,8 @@ const PurchasedStockDetails = (props) => {
         <div className="flex flex-col items-center w-full lg:flex-row lg:w-1/2">
           <div className="max-w-lg lg:mx-12 lg:order-2">
             <h1 className="text-2xl font-medium tracking-wide text-gray-800 dark:text-white lg:text-4xl">
-              Investing {purchase.shares}{" "}
-              {purchase.shares > 0 ? "shares" : "share"} in{" "}
+              Investing {purchase.shares}{' '}
+              {purchase.shares > 0 ? 'shares' : 'share'} in{' '}
               <strong>
                 {stock.exchange} : {purchase.tickerBought}
               </strong>
@@ -156,7 +156,7 @@ const PurchasedStockDetails = (props) => {
             <div className="px-6 py-4 flex flex-col justify-center items-center">
               <div className="flex items-center justify-center mt-4 text-gray-700 dark:text-gray-200">
                 <h1 className="text-md font-medium tracking-wide text-gray-800 dark:text-white">
-                  Current Price: &nbsp;{" "}
+                  Current Price: &nbsp;{' '}
                 </h1>
                 <CurrentPrice
                   currentPrice={stock.currentPrice}
@@ -167,7 +167,7 @@ const PurchasedStockDetails = (props) => {
 
               <div className="flex items-center mt-4 text-gray-700 dark:text-gray-200">
                 <h1 className="text-md font-medium tracking-wide text-gray-800 dark:text-white">
-                  Trend: &nbsp;{" "}
+                  Trend: &nbsp;{' '}
                 </h1>
                 {(stock.currentPrice / stock.initialPrice).toFixed(2) > 1 ? (
                   <span className="relative inline-block px-3 py-1 font-semibold text-green-900 leading-tight">
@@ -179,7 +179,7 @@ const PurchasedStockDetails = (props) => {
                       + %
                       {Math.abs(
                         (1 - stock.currentPrice / stock.initialPrice) * 100
-                      ).toFixed(2)}{" "}
+                      ).toFixed(2)}{' '}
                       up all time.
                     </span>
                   </span>
@@ -193,7 +193,7 @@ const PurchasedStockDetails = (props) => {
                       - %
                       {Math.abs(
                         (1 - stock.currentPrice / stock.initialPrice) * 100
-                      ).toFixed(2)}{" "}
+                      ).toFixed(2)}{' '}
                       down all time.
                     </span>
                   </span>

@@ -1,24 +1,24 @@
-import React, { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import socketIOClient from "socket.io-client";
-import { getStocks } from "../../../actions/stocks";
+import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import socketIOClient from 'socket.io-client';
+import { getStocks } from '../../../actions/stocks';
 import {
   SORT_STOCKS_BY_FIELD,
   MARKET_ERROR_OCCURRED,
-} from "../../../constants/actions";
-import ListView from "./ListView/ListView";
-import GridView from "./GridView/GridView";
-import TopInfoSection from "./TopInfoSection/TopInfoSection";
-import Pagination from "../../Pagination/Pagination";
+} from '../../../constants/actions';
+import ListView from './ListView/ListView';
+import GridView from './GridView/GridView';
+import TopInfoSection from './TopInfoSection/TopInfoSection';
+import Pagination from '../../Pagination/Pagination';
 
 const StockView = () => {
   const socket = socketIOClient(import.meta.env.VITE_STOCKS_API, {
-    transports: ["websocket", "polling", "flashsocket"],
+    transports: ['websocket', 'polling', 'flashsocket'],
   });
   const errors = useSelector((state) => state.marketErrorsReducer);
   const stocks = useSelector((state) => state.stocksReducer);
   const [isListMode, setIsListMode] = useState(true);
-  const [searchFilter, setSearchFilter] = useState("");
+  const [searchFilter, setSearchFilter] = useState('');
   const [sortById, setSortById] = useState(true);
   const [sortByName, setSortByName] = useState(true);
   const [sortByTicker, setSortByTicker] = useState(true);
@@ -33,10 +33,10 @@ const StockView = () => {
 
   useEffect(() => {
     socket.connect();
-    dispatch({ type: MARKET_ERROR_OCCURRED, payload: "" });
+    dispatch({ type: MARKET_ERROR_OCCURRED, payload: '' });
     return () => {
       socket.disconnect();
-      dispatch({ type: MARKET_ERROR_OCCURRED, payload: "" });
+      dispatch({ type: MARKET_ERROR_OCCURRED, payload: '' });
     };
   }, [socket, dispatch]);
 
@@ -130,7 +130,7 @@ const StockView = () => {
                   </button>
                   <button
                     onClick={() => {
-                      sortByField("id", sortById);
+                      sortByField('id', sortById);
                       setSortById((prevSortById) => !prevSortById);
                     }}
                     className="ml-4 flex items-center px-2 py-2 font-medium tracking-wide text-black dark:text-gray-200 capitalize transition-colors duration-200 transform bg-white rounded-md dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 focus:outline-none focus:bg-gray-200 dark:focus:bg-gray-700"
@@ -154,7 +154,7 @@ const StockView = () => {
                   </button>
                   <button
                     onClick={() => {
-                      sortByField("name", sortByName);
+                      sortByField('name', sortByName);
                       setSortByName((prevSortByName) => !prevSortByName);
                     }}
                     className="ml-4 flex items-center px-2 py-2 font-medium tracking-wide text-black dark:text-gray-200 capitalize transition-colors duration-200 transform bg-white rounded-md dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 focus:outline-none focus:bg-gray-200 dark:focus:bg-gray-700"
@@ -195,7 +195,7 @@ const StockView = () => {
                   </button>
                   <button
                     onClick={() => {
-                      sortByField("currentPrice", sortByPrice);
+                      sortByField('currentPrice', sortByPrice);
                       setSortByPrice((prevSortByPrice) => !prevSortByPrice);
                     }}
                     className="ml-4 flex items-center px-2 py-2 font-medium tracking-wide text-black dark:text-gray-200 capitalize transition-colors duration-200 transform bg-white rounded-md dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 focus:outline-none focus:bg-gray-200 dark:focus:bg-gray-700"
@@ -229,8 +229,8 @@ const StockView = () => {
                 <span className="relative text-blue-500 dark:text-blue-400">
                   {`${filteredStocks.length}` +
                     (filteredStocks.length > 1
-                      ? " results found..."
-                      : " result found...")}
+                      ? ' results found...'
+                      : ' result found...')}
                 </span>
               </span>
             ) : (

@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import { updateUserName, removeUserAccount } from "../../../actions/auth";
-import { USER_ERROR_OCCURRED } from "../../../constants/actions";
+import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { updateUserName, removeUserAccount } from '../../../actions/auth';
+import { USER_ERROR_OCCURRED } from '../../../constants/actions';
 
-const initialState = { firstName: "", lastName: "" };
+const initialState = { firstName: '', lastName: '' };
 
 const Account = (props) => {
   const dispatch = useDispatch();
@@ -14,23 +14,23 @@ const Account = (props) => {
   const { user } = props;
 
   useEffect(() => {
-    dispatch({ type: USER_ERROR_OCCURRED, payload: "" });
+    dispatch({ type: USER_ERROR_OCCURRED, payload: '' });
     return () => {
-      dispatch({ type: USER_ERROR_OCCURRED, payload: "" });
+      dispatch({ type: USER_ERROR_OCCURRED, payload: '' });
     };
   }, [dispatch]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch({ type: USER_ERROR_OCCURRED, payload: "" });
+    dispatch({ type: USER_ERROR_OCCURRED, payload: '' });
     dispatch(updateUserName(form, history));
   };
 
   const handleSubmitRemoveAccount = (e) => {
     e.preventDefault();
-    dispatch({ type: USER_ERROR_OCCURRED, payload: "" });
+    dispatch({ type: USER_ERROR_OCCURRED, payload: '' });
     const confirmAccountRemoval = window.confirm(
-      "[WARNING] Are you sure you want to remove this account? This action cannot be undone!"
+      '[WARNING] Are you sure you want to remove this account? This action cannot be undone!'
     );
     if (confirmAccountRemoval) {
       dispatch(removeUserAccount(history));
@@ -63,7 +63,7 @@ const Account = (props) => {
                   id="firstName"
                   type="text"
                   name="firstName"
-                  placeholder={String(user?.result.name).split(" ")[0]}
+                  placeholder={String(user?.result.name).split(' ')[0]}
                   className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring"
                 />
               </div>
@@ -81,7 +81,7 @@ const Account = (props) => {
                   id="lastName"
                   type="text"
                   name="lastName"
-                  placeholder={String(user?.result.name).split(" ")[1]}
+                  placeholder={String(user?.result.name).split(' ')[1]}
                   className="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-300 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring"
                 />
               </div>
@@ -102,7 +102,7 @@ const Account = (props) => {
                 <div className="px-4 py-2 -mx-3">
                   <div className="mx-3">
                     <span className="font-semibold text-red-500 dark:text-red-900">
-                      Error:{" "}
+                      Error:{' '}
                       <span className="text-sm text-red-600 dark:text-red-200">
                         {errors}
                       </span>
@@ -156,7 +156,7 @@ const Account = (props) => {
                   <div className="px-4 py-2 -mx-3">
                     <div className="mx-3">
                       <span className="font-semibold text-red-500 dark:text-red-900">
-                        Error:{" "}
+                        Error:{' '}
                         <span className="text-sm text-red-600 dark:text-red-200">
                           {errors}
                         </span>

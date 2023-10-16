@@ -8,9 +8,9 @@ export const getStocks = async (req, res) => {
     const allStocks = await Stock.find().sort({ id: 1 });
     res.status(200).json(allStocks);
   } catch (error) {
-    res.status(404).json({ message: "An error has occurred fetching stocks." });
+    res.status(404).json({ message: 'An error has occurred fetching stocks.' });
   }
-}
+};
 
 export const getStock = async (req, res) => {
   try {
@@ -18,8 +18,10 @@ export const getStock = async (req, res) => {
     const oneStock = await Stock.findById(id);
     res.status(200).json(oneStock);
   } catch (error) {
-    res.status(404).json({ message: "An error has occurred fetching the stock." });
+    res
+      .status(404)
+      .json({ message: 'An error has occurred fetching the stock.' });
   }
-}
+};
 
 export default router;

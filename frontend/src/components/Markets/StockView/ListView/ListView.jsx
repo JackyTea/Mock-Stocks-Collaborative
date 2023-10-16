@@ -1,8 +1,8 @@
-import React from "react";
-import { Link, useNavigate } from "react-router-dom";
-import ListViewSkeleton from "./ListViewSkeleton";
-import CurrentPrice from "../../../CurrentPrice/CurrentPrice";
-import PriceChart from "../../../PriceChart/PriceChart";
+import React from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import ListViewSkeleton from './ListViewSkeleton';
+import CurrentPrice from '../../../CurrentPrice/CurrentPrice';
+import PriceChart from '../../../PriceChart/PriceChart';
 
 const ListView = (props) => {
   const {
@@ -32,7 +32,7 @@ const ListView = (props) => {
             <tr>
               <th
                 onClick={() => {
-                  sortByField("id", sortById);
+                  sortByField('id', sortById);
                   setSortById((prevSortById) => !prevSortById);
                 }}
                 scope="col"
@@ -42,7 +42,7 @@ const ListView = (props) => {
               </th>
               <th
                 onClick={() => {
-                  sortByField("name", sortByName);
+                  sortByField('name', sortByName);
                   setSortByName((prevSortByName) => !prevSortByName);
                 }}
                 scope="col"
@@ -52,7 +52,7 @@ const ListView = (props) => {
               </th>
               <th
                 onClick={() => {
-                  sortByField("ticker", sortByTicker);
+                  sortByField('ticker', sortByTicker);
                   setSortByTicker((prevSortByTicker) => !prevSortByTicker);
                 }}
                 scope="col"
@@ -62,7 +62,7 @@ const ListView = (props) => {
               </th>
               <th
                 onClick={() => {
-                  sortByField("currentPrice", sortByPrice);
+                  sortByField('currentPrice', sortByPrice);
                   setSortByPrice((prevSortByPrice) => !prevSortByPrice);
                 }}
                 scope="col"
@@ -140,7 +140,7 @@ const ListView = (props) => {
                         socket={socket}
                         ticker={stock.ticker}
                         currPrice={stock.currentPrice}
-                        styleSet={"h-16 w-32"}
+                        styleSet={'h-16 w-32'}
                       />
                     </td>
                     <td className="px-5 py-5 border-b border-gray-200 dark:border-gray-800   text-sm">

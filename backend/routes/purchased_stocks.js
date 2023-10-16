@@ -5,9 +5,9 @@ import {
   getPurchasedStock,
   addPurchasedStock,
   updatePurchasedStock,
-  removePurchasedStock
+  removePurchasedStock,
 } from '../controllers/purchased_stocks.js';
-import auth from "../middleware/auth.js";
+import auth from '../middleware/auth.js';
 
 const router = express.Router();
 

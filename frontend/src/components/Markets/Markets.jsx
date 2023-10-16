@@ -1,12 +1,12 @@
 import React from 'react';
-import StockView from "./StockView/StockView";
+import StockView from './StockView/StockView';
 
 const Markets = () => {
   return (
     <>
-    <StockView/>
+      <StockView />
     </>
   );
-}
+};
 
 export default Markets;

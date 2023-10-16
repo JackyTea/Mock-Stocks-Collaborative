@@ -1,17 +1,17 @@
-import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import { useParams } from "react-router";
-import { getStock } from "../../actions/stocks";
-import { getUserInfo } from "../../actions/auth";
+import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { useParams } from 'react-router';
+import { getStock } from '../../actions/stocks';
+import { getUserInfo } from '../../actions/auth';
 import {
   getPurchase,
   addPurchase,
   updatePurchase,
   removePurchase,
-} from "../../actions/purchased";
-import { PURCHASED_ERROR_OCCURRED } from "../../constants/actions";
+} from '../../actions/purchased';
+import { PURCHASED_ERROR_OCCURRED } from '../../constants/actions';
 
 const initialState = { stockId: null, sharesBought: 0 };
 
@@ -27,9 +27,9 @@ const TransactionForm = () => {
   const [shares, setShares] = useState(0);
 
   useEffect(() => {
-    dispatch({ type: PURCHASED_ERROR_OCCURRED, payload: "" });
+    dispatch({ type: PURCHASED_ERROR_OCCURRED, payload: '' });
     return () => {
-      dispatch({ type: PURCHASED_ERROR_OCCURRED, payload: "" });
+      dispatch({ type: PURCHASED_ERROR_OCCURRED, payload: '' });
     };
   }, [dispatch]);
 
@@ -43,14 +43,14 @@ const TransactionForm = () => {
 
   const handleSubmitNewPurchase = (e) => {
     e.preventDefault();
-    dispatch({ type: PURCHASED_ERROR_OCCURRED, payload: "" });
+    dispatch({ type: PURCHASED_ERROR_OCCURRED, payload: '' });
     dispatch(addPurchase(form, history));
     dispatch(getUserInfo());
   };
 
   const handleSubmitUpdatePurchase = (e) => {
     e.preventDefault();
-    dispatch({ type: PURCHASED_ERROR_OCCURRED, payload: "" });
+    dispatch({ type: PURCHASED_ERROR_OCCURRED, payload: '' });
     if (isSell) {
       dispatch(removePurchase(id, history));
     } else {
@@ -64,7 +64,7 @@ const TransactionForm = () => {
   };
 
   const handleChange = (e) => {
-    setShares(e.target.value === "" ? 0 : e.target.value);
+    setShares(e.target.value === '' ? 0 : e.target.value);
     setForm({ ...form, [e.target.name]: e.target.value, stockId: id });
   };
 
@@ -77,7 +77,7 @@ const TransactionForm = () => {
               Error 404
             </span>
             <h1 className="block mt-2 text-2xl font-semibold text-gray-800 dark:text-white hover:text-gray-600 hover:underline">
-              Oops! Invalid Transaction{" "}
+              Oops! Invalid Transaction{' '}
               <code className="text-red-900 dark:text-red-600">
                 {window.location.pathname}
               </code>
@@ -106,7 +106,7 @@ const TransactionForm = () => {
       <div className="container flex flex-col px-6 py-4 mx-auto space-y-6 lg:h-128 lg:py-16 lg:flex-row lg:items-center lg:space-x-6">
         <section className="w-full max-w-2xl px-6 py-4 mx-auto bg-white rounded-md shadow-md dark:bg-gray-900">
           <h2 className="text-3xl font-semibold text-center text-gray-800 dark:text-white">
-            {shares < 0 ? "Selling" : "Buying"} {stock.name} stock.
+            {shares < 0 ? 'Selling' : 'Buying'} {stock.name} stock.
           </h2>
           <p className="mt-3 text-center text-gray-600 dark:text-gray-400">
             Enter a <strong>negative value</strong> to sell shares.

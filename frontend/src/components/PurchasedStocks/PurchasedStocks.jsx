@@ -1,15 +1,15 @@
-import React, { useEffect } from "react";
-import socketIOClient from "socket.io-client";
-import { getPurchases } from "../../actions/purchased";
-import { useDispatch, useSelector } from "react-redux";
-import PurchaseListView from "./PurchaseListView/PurchaseListView";
-import PurchaseListViewSkeleton from "./PurchaseListView/PurchaseListViewSkeleton";
-import PurchaseOverview from "./PurchaseOverview/PurchaseOverview";
-import PurchaseOverviewSkeleton from "./PurchaseOverview/PurchaseOverviewSkeleton";
+import React, { useEffect } from 'react';
+import socketIOClient from 'socket.io-client';
+import { getPurchases } from '../../actions/purchased';
+import { useDispatch, useSelector } from 'react-redux';
+import PurchaseListView from './PurchaseListView/PurchaseListView';
+import PurchaseListViewSkeleton from './PurchaseListView/PurchaseListViewSkeleton';
+import PurchaseOverview from './PurchaseOverview/PurchaseOverview';
+import PurchaseOverviewSkeleton from './PurchaseOverview/PurchaseOverviewSkeleton';
 
 const PurchasedStocks = () => {
   const socket = socketIOClient(import.meta.env.VITE_STOCKS_API, {
-    transports: ["websocket", "polling", "flashsocket"],
+    transports: ['websocket', 'polling', 'flashsocket'],
   });
   const purchases = useSelector((state) => state.purchasedReducer);
   const dispatch = useDispatch();

@@ -1,14 +1,14 @@
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { getStocks } from "../../../actions/stocks";
-import { MARKET_ERROR_OCCURRED } from "../../../constants/actions";
-import socketIOClient from "socket.io-client";
-import ShowcaseCardSkeleton from "./ShowcaseCardSkeleton";
-import ShowcaseCard from "./ShowcaseCard";
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { getStocks } from '../../../actions/stocks';
+import { MARKET_ERROR_OCCURRED } from '../../../constants/actions';
+import socketIOClient from 'socket.io-client';
+import ShowcaseCardSkeleton from './ShowcaseCardSkeleton';
+import ShowcaseCard from './ShowcaseCard';
 
 const Showcase = () => {
   const socket = socketIOClient(import.meta.env.VITE_STOCKS_API, {
-    transports: ["websocket", "polling", "flashsocket"],
+    transports: ['websocket', 'polling', 'flashsocket'],
   });
   const stocks = useSelector((state) => state.stocksReducer);
   const dispatch = useDispatch();
@@ -19,10 +19,10 @@ const Showcase = () => {
 
   useEffect(() => {
     socket.connect();
-    dispatch({ type: MARKET_ERROR_OCCURRED, payload: "" });
+    dispatch({ type: MARKET_ERROR_OCCURRED, payload: '' });
     return () => {
       socket.disconnect();
-      dispatch({ type: MARKET_ERROR_OCCURRED, payload: "" });
+      dispatch({ type: MARKET_ERROR_OCCURRED, payload: '' });
     };
   }, [socket, dispatch]);
 

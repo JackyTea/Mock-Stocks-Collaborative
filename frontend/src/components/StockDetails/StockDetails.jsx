@@ -1,17 +1,17 @@
-import React, { useEffect } from "react";
-import { Link } from "react-router-dom";
-import { useParams } from "react-router";
-import socketIOClient from "socket.io-client";
-import { useDispatch, useSelector } from "react-redux";
-import { getStock } from "../../actions/stocks";
-import StockDetailsSkeleton from "./StockDetailsSkeleton";
-import CurrentPrice from "../CurrentPrice/CurrentPrice";
-import PriceChart from "../PriceChart/PriceChart";
+import React, { useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import { useParams } from 'react-router';
+import socketIOClient from 'socket.io-client';
+import { useDispatch, useSelector } from 'react-redux';
+import { getStock } from '../../actions/stocks';
+import StockDetailsSkeleton from './StockDetailsSkeleton';
+import CurrentPrice from '../CurrentPrice/CurrentPrice';
+import PriceChart from '../PriceChart/PriceChart';
 
 const StockDetails = (props) => {
   const { id } = useParams();
   const socket = socketIOClient(import.meta.env.VITE_STOCKS_API, {
-    transports: ["websocket", "polling", "flashsocket"],
+    transports: ['websocket', 'polling', 'flashsocket'],
   });
   const stock = useSelector((state) => state.stocksReducer);
   const dispatch = useDispatch();
@@ -35,7 +35,7 @@ const StockDetails = (props) => {
         <div className="flex flex-col items-center w-full lg:flex-row lg:w-1/2">
           <div className="max-w-lg lg:mx-12 lg:order-2">
             <h1 className="text-3xl font-medium tracking-wide text-gray-800 dark:text-white lg:text-4xl">
-              {stock.name} -{" "}
+              {stock.name} -{' '}
               <strong>
                 {stock.exchange} : {stock.ticker}
               </strong>
@@ -69,7 +69,7 @@ const StockDetails = (props) => {
                         + %
                         {Math.abs(
                           (1 - stock.currentPrice / stock.initialPrice) * 100
-                        ).toFixed(2)}{" "}
+                        ).toFixed(2)}{' '}
                         up all time.
                       </span>
                     </span>
@@ -83,7 +83,7 @@ const StockDetails = (props) => {
                         - %
                         {Math.abs(
                           (1 - stock.currentPrice / stock.initialPrice) * 100
-                        ).toFixed(2)}{" "}
+                        ).toFixed(2)}{' '}
                         down all time.
                       </span>
                     </span>
@@ -102,7 +102,7 @@ const StockDetails = (props) => {
                   socket={socket}
                   ticker={stock.ticker}
                   currPrice={stock.currentPrice}
-                  styleSet={"h-24 w-64"}
+                  styleSet={'h-24 w-64'}
                 />
               </div>
             </div>
@@ -217,7 +217,7 @@ const StockDetails = (props) => {
                 </svg>
 
                 <h1 className="px-2 text-sm">
-                  Industries: {stock.industries.join(", ")}
+                  Industries: {stock.industries.join(', ')}
                 </h1>
               </div>
 

@@ -1,17 +1,17 @@
-import React, { createContext, useEffect, useState } from "react";
+import React, { createContext, useEffect, useState } from 'react';
 
 const getInitialTheme = () => {
-  if (typeof window !== "undefined" && window.localStorage) {
-    const storedPreferences= window.localStorage.getItem("color-theme");
-    if (typeof storedPreferences=== "string") {
+  if (typeof window !== 'undefined' && window.localStorage) {
+    const storedPreferences = window.localStorage.getItem('color-theme');
+    if (typeof storedPreferences === 'string') {
       return storedPreferences;
     }
-    const userMedia = window.matchMedia("(prefers-color-scheme: dark)");
+    const userMedia = window.matchMedia('(prefers-color-scheme: dark)');
     if (userMedia.matches) {
-      return "dark";
+      return 'dark';
     }
   }
-  return "light";
+  return 'light';
 };
 
 export const ThemeContext = createContext();
@@ -21,10 +21,10 @@ export const ThemeProvider = ({ initialTheme, children }) => {
 
   const rawSetTheme = (rawTheme) => {
     const root = window.document.documentElement;
-    const isDark = rawTheme === "dark";
-    root.classList.remove(isDark ? "light" : "dark");
+    const isDark = rawTheme === 'dark';
+    root.classList.remove(isDark ? 'light' : 'dark');
     root.classList.add(rawTheme);
-    localStorage.setItem("color-theme", rawTheme);
+    localStorage.setItem('color-theme', rawTheme);
   };
 
   if (initialTheme) {

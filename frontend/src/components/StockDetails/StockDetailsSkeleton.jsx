@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 const StockDetailsSkeleton = () => {
   return (
@@ -6,7 +6,9 @@ const StockDetailsSkeleton = () => {
       <div className="container flex flex-col px-6 py-4 mx-auto space-y-6 lg:h-128 lg:py-16 lg:flex-row lg:items-center lg:space-x-6">
         <div className="flex flex-col-reverse items-left w-full lg:flex-col-reverse lg:w-1/2">
           <div className="animate-pulse max-w-full lg:mx-12 lg:order-2">
-            <h1 className="text-3xl font-medium text-gray-800 dark:text-white lg:text-4xl">Loading your stock...</h1>
+            <h1 className="text-3xl font-medium text-gray-800 dark:text-white lg:text-4xl">
+              Loading your stock...
+            </h1>
             <div className="my-2 h-4 bg-gray-200 dark:bg-gray-500 rounded"></div>
             <div className="my-2 h-4 bg-gray-200 dark:bg-gray-500 rounded"></div>
             <div className="my-2 h-4 bg-gray-200 dark:bg-gray-500 rounded"></div>
@@ -19,6 +21,6 @@ const StockDetailsSkeleton = () => {
       </div>
     </div>
   );
-}
+};
 
 export default StockDetailsSkeleton;

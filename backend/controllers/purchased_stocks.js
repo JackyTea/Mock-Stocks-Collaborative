@@ -10,35 +10,53 @@ const router = express.Router();
 // remove first transaction after a certain amount to keep logs clean
 async function clearFirstTransactionLog(res, userId) {
   try {
-    const countTransactions = await Transaction.find({ userId: userId }).countDocuments();
+    const countTransactions = await Transaction.find({
+      userId: userId,
+    }).countDocuments();
     if (countTransactions > 20) {
-      await Transaction.findOneAndDelete({ userId: userId }, { sort: { transactedAt: 1 } });
+      await Transaction.findOneAndDelete(
+        { userId: userId },
+        { sort: { transactedAt: 1 } }
+      );
     }
   } catch (error) {
-    res.status(400).json({ message: "Failure to cleanup transaction logs!" });
+    res.status(400).json({ message: 'Failure to cleanup transaction logs!' });
   }
 }
 
 // GET
 export const getPurchasedStocks = async (req, res) => {
   try {
-    const allPurchasedStocks = await PurchasedStock.find({ userId: req.userId });
+    const allPurchasedStocks = await PurchasedStock.find({
+      userId: req.userId,
+    });
     res.status(200).json(allPurchasedStocks);
   } catch (error) {
-    res.status(404).json({ message: "An error has occurred fetching your purchased stocks." });
+    res
+      .status(404)
+      .json({
+        message: 'An error has occurred fetching your purchased stocks.',
+      });
   }
-}
+};
 
 //GET /:id
 export const getPurchasedStock = async (req, res) => {
   try {
     const { id } = req.params;
-    const onePurchasedStock = await PurchasedStock.findOne({ userId: req.userId, stock: id });
+    const onePurchasedStock = await PurchasedStock.findOne({
+      userId: req.userId,
+      stock: id,
+    });
     res.status(200).json(onePurchasedStock);
   } catch (error) {
-    res.status(404).json({ message: "An error has occurred fetching your purchased stock." });
+    res
+      .status(404)
+      .json({
+        message: 'An error has occurred fetching your purchased stock.',
+      });
   }
-}
+};
 
 // POST
 export const addPurchasedStock = async (req, res) => {
@@ -47,19 +65,25 @@ export const addPurchasedStock = async (req, res) => {
 
     const stock = await Stock.findById(stockId);
     const user = await User.findById(req.userId);
-    const alreadyPurchased = await PurchasedStock.find({ userId: req.userId, stock: stock }).countDocuments() > 0;
+    const alreadyPurchased =
+      (await PurchasedStock.find({
+        userId: req.userId,
+        stock: stock,
+      }).countDocuments()) > 0;
 
     if (alreadyPurchased) {
-      return res.status(409).send(`Stock: ${stock.ticker} was already purchased!`);
+      return res
+        .status(409)
+        .send(`Stock: ${stock.ticker} was already purchased!`);
     }
 
     if (sharesBought < 0 || sharesBought > 100) {
-      return res.status(400).json({ message: "Invalid shares!" });
+      return res.status(400).json({ message: 'Invalid shares!' });
     }
 
     const initialInvestment = sharesBought * stock.currentPrice;
     if (initialInvestment > user.coins) {
-      return res.status(400).json({ message: "Not enough funds!" });
+      return res.status(400).json({ message: 'Not enough funds!' });
     }
 
     const newPurchasedStock = new PurchasedStock({
@@ -67,7 +91,7 @@ export const addPurchasedStock = async (req, res) => {
       stock: stock,
       tickerBought: stock.ticker,
       shares: sharesBought,
-      initialInvestment: initialInvestment
+      initialInvestment: initialInvestment,
     });
     const cost = user.coins - initialInvestment;
 
@@ -76,20 +100,21 @@ export const addPurchasedStock = async (req, res) => {
 
     const transactionLog = new Transaction({
       userId: req.userId,
-      transactionType: "BUY",
+      transactionType: 'BUY',
       tickerBought: stock.ticker,
       shares: sharesBought,
-      investment: initialInvestment
+      investment: initialInvestment,
     });
     await transactionLog.save();
     clearFirstTransactionLog(res, req.userId);
 
     res.status(200).json(newPurchasedStock);
   } catch (error) {
-    res.status(404).json({ message: "An error has occurred purchasing stock." });
+    res
+      .status(404)
+      .json({ message: 'An error has occurred purchasing stock.' });
   }
-}
-
+};
 
 // PATCH
 export const updatePurchasedStock = async (req, res) => {
@@ -103,50 +128,72 @@ export const updatePurchasedStock = async (req, res) => {
     }
 
     if (bought > 100) {
-      return res.status(400).json({ message: "Invalid shares!" });
+      return res.status(400).json({ message: 'Invalid shares!' });
     }
 
     const stock = await Stock.findById(id);
     const user = await User.findById(req.userId);
-    const purchased = await PurchasedStock.findOne({ userId: req.userId, stock: stock });
+    const purchased = await PurchasedStock.findOne({
+      userId: req.userId,
+      stock: stock,
+    });
 
     const transactionLog = new Transaction({
       userId: req.userId,
-      transactionType: "ADJUST",
+      transactionType: 'ADJUST',
       tickerBought: stock.ticker,
       shares: bought,
-      investment: (stock.currentPrice * purchased.shares)
+      investment: stock.currentPrice * purchased.shares,
     });
     await transactionLog.save();
     clearFirstTransactionLog(res, req.userId);
 
-    if ((purchased.shares + bought) <= 0) {
-      const profit = user.coins + (stock.currentPrice * purchased.shares);
+    if (purchased.shares + bought <= 0) {
+      const profit = user.coins + stock.currentPrice * purchased.shares;
       await User.findByIdAndUpdate(req.userId, { coins: profit });
-      await PurchasedStock.findOneAndDelete({ userId: req.userId, stock: stock });
-      return res.status(200).json({ message: "Fully sold stock!" });
+      await PurchasedStock.findOneAndDelete({
+        userId: req.userId,
+        stock: stock,
+      });
+      return res.status(200).json({ message: 'Fully sold stock!' });
     }
 
     if (bought < 0) {
-      const profit = user.coins + (stock.currentPrice * Math.abs(bought));
+      const profit = user.coins + stock.currentPrice * Math.abs(bought);
       await User.findByIdAndUpdate(req.userId, { coins: profit });
-      await PurchasedStock.findOneAndUpdate({ userId: req.userId, stock: stock }, { shares: purchased.shares - Math.abs(bought), initialInvestment: purchased.initialInvestment - (Math.abs(bought) * stock.currentPrice) });
-      return res.status(200).json({ message: "Sold some shares!" });
+      await PurchasedStock.findOneAndUpdate(
+        { userId: req.userId, stock: stock },
+        {
+          shares: purchased.shares - Math.abs(bought),
+          initialInvestment:
+            purchased.initialInvestment - Math.abs(bought) * stock.currentPrice,
+        }
+      );
+      return res.status(200).json({ message: 'Sold some shares!' });
     }
 
-    if ((bought * stock.currentPrice) > user.coins) {
-      return res.status(400).json({ message: "Not enough funds!" });
+    if (bought * stock.currentPrice > user.coins) {
+      return res.status(400).json({ message: 'Not enough funds!' });
     }
 
-    const cost = user.coins - (bought * stock.currentPrice);
+    const cost = user.coins - bought * stock.currentPrice;
     await User.findByIdAndUpdate(req.userId, { coins: cost });
-    await PurchasedStock.findOneAndUpdate({ userId: req.userId, stock: stock }, { shares: purchased.shares + bought, initialInvestment: purchased.initialInvestment + (bought * stock.currentPrice) });
+    await PurchasedStock.findOneAndUpdate(
+      { userId: req.userId, stock: stock },
+      {
+        shares: purchased.shares + bought,
+        initialInvestment:
+          purchased.initialInvestment + bought * stock.currentPrice,
+      }
+    );
 
-    res.status(200).json({ message: "Bought more shares!" });
+    res.status(200).json({ message: 'Bought more shares!' });
   } catch (error) {
-    res.status(404).json({ message: "An error has occurred updated your purchased stock." });
+    res
+      .status(404)
+      .json({ message: 'An error has occurred updated your purchased stock.' });
   }
-}
+};
 
 // DELETE
 export const removePurchasedStock = async (req, res) => {
@@ -159,26 +206,31 @@ export const removePurchasedStock = async (req, res) => {
 
     const stock = await Stock.findById(id);
     const user = await User.findById(req.userId);
-    const sold = await PurchasedStock.findOne({ userId: req.userId, stock: stock });
-    const profit = user.coins + (stock.currentPrice * sold.shares);
+    const sold = await PurchasedStock.findOne({
+      userId: req.userId,
+      stock: stock,
+    });
+    const profit = user.coins + stock.currentPrice * sold.shares;
 
     await User.findByIdAndUpdate(req.userId, { coins: profit });
     await PurchasedStock.findOneAndDelete({ userId: req.userId, stock: stock });
 
     const transactionLog = new Transaction({
       userId: req.userId,
-      transactionType: "SELL",
+      transactionType: 'SELL',
       tickerBought: stock.ticker,
       shares: sold.shares,
-      investment: profit
+      investment: profit,
     });
     await transactionLog.save();
     clearFirstTransactionLog(res, req.userId);
 
-    res.status(200).json({ message: "Stock fully sold!" });
+    res.status(200).json({ message: 'Stock fully sold!' });
   } catch (error) {
-    res.status(404).json({ message: "An error has occurred selling your purchased stock." });
+    res
+      .status(404)
+      .json({ message: 'An error has occurred selling your purchased stock.' });
   }
-}
+};
 
 export default router;

@@ -13,12 +13,12 @@ const actionLogSchema = mongoose.Schema({
     type: String,
   },
   shares: {
-    type: Number
+    type: Number,
   },
   loggedAt: {
     type: Date,
-    default: Date.now
-  }
+    default: Date.now,
+  },
 });
 
 var ActionLog = mongoose.model('ActionLog', actionLogSchema);

@@ -18,7 +18,7 @@ export const USER_UPDATE_NAME = 'USER_UPDATE_NAME';
 export const DELETE_USER = 'DELETE_USER';
 
 //transactions
-export const GET_ALL_TRANSACTIONS = 'GET_ALL_TRANSACTIONS'; 
+export const GET_ALL_TRANSACTIONS = 'GET_ALL_TRANSACTIONS';
 
 //logs
 export const GET_ALL_LOGS = 'GET_ALL_LOGS';

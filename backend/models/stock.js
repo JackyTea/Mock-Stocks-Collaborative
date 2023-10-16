@@ -12,7 +12,7 @@ const stockSchema = mongoose.Schema({
   siteUrl: String,
   industries: [String],
   icon: String,
-  favorited: Boolean
+  favorited: Boolean,
 });
 
 let Stock = mongoose.model('Stock', stockSchema);

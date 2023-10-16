@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect } from 'react';
 import { Chart, registerables } from 'chart.js';
 
 const InsightsChart = (props) => {
@@ -11,57 +11,59 @@ const InsightsChart = (props) => {
     const ctx = document.getElementById(id);
     const data = {
       labels: [],
-      datasets: [{
-        data: [],
-        label: 'Initial Investment',
-        backgroundColor: '#2563EB',
-        borderColor: '#2563EB'
-      }]
-    }
+      datasets: [
+        {
+          data: [],
+          label: 'Initial Investment',
+          backgroundColor: '#2563EB',
+          borderColor: '#2563EB',
+        },
+      ],
+    };
 
     const optionsSet = {
       animation: true,
       plugins: {
         legend: {
-          display: true
+          display: true,
         },
       },
       responsive: true,
       scales: {
         x: {
-          display: true
+          display: true,
         },
         y: {
-          display: true
-        }
-      }
-    }
+          display: true,
+        },
+      },
+    };
 
     const chartDrawn = new Chart(ctx, {
       type: 'bar',
       data: data,
-      options: optionsSet
+      options: optionsSet,
     });
 
-    if(mounted) {
-      for(let i = 0; i < purchases.length && i < 5; i++) {
-        data.labels.push(purchases[i].tickerBought)
+    if (mounted) {
+      for (let i = 0; i < purchases.length && i < 5; i++) {
+        data.labels.push(purchases[i].tickerBought);
         data.datasets[0].data.push(parseFloat(purchases[i].initialInvestment));
-        chartDrawn.update()
+        chartDrawn.update();
       }
     }
 
     return () => {
-      mounted = false
+      mounted = false;
       chartDrawn.destroy();
-    }
-  }, [id, purchases])
+    };
+  }, [id, purchases]);
 
   return (
     <div className={styleSet}>
       <canvas id={id}></canvas>
     </div>
   );
-}
+};
 
 export default InsightsChart;

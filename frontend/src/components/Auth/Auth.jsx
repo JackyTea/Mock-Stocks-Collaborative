@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useNavigate, useLocation } from "react-router-dom";
-import { loginUser, registerUser } from "../../actions/auth";
-import { AUTH_ERROR_OCCURRED } from "../../constants/actions";
+import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate, useLocation } from 'react-router-dom';
+import { loginUser, registerUser } from '../../actions/auth';
+import { AUTH_ERROR_OCCURRED } from '../../constants/actions';
 
-const initialState = { firstName: "", lastName: "", email: "", password: "" };
+const initialState = { firstName: '', lastName: '', email: '', password: '' };
 
 const Auth = () => {
   const errors = useSelector((state) => state.authErrorsReducer);
@@ -17,18 +17,18 @@ const Auth = () => {
   const { state } = useLocation();
 
   useEffect(() => {
-    dispatch({ type: AUTH_ERROR_OCCURRED, payload: "" });
+    dispatch({ type: AUTH_ERROR_OCCURRED, payload: '' });
     return () => {
-      dispatch({ type: AUTH_ERROR_OCCURRED, payload: "" });
+      dispatch({ type: AUTH_ERROR_OCCURRED, payload: '' });
     };
   }, [dispatch]);
 
   const switchMode = (e) => {
     setIsLoading(false);
-    dispatch({ type: AUTH_ERROR_OCCURRED, payload: "" });
-    const inputs = document.forms["auth_form"].getElementsByTagName("input");
+    dispatch({ type: AUTH_ERROR_OCCURRED, payload: '' });
+    const inputs = document.forms['auth_form'].getElementsByTagName('input');
     for (let i = 0; i < inputs.length; i++) {
-      inputs[i].value = "";
+      inputs[i].value = '';
     }
     setIsSignup((prevIsSignup) => !prevIsSignup);
   };
@@ -36,7 +36,7 @@ const Auth = () => {
   const handleSubmitGuestAccount = (e) => {
     e.preventDefault();
     setIsLoadingGuest(true);
-    dispatch({ type: AUTH_ERROR_OCCURRED, payload: "" });
+    dispatch({ type: AUTH_ERROR_OCCURRED, payload: '' });
     dispatch(
       loginUser(
         {
@@ -52,7 +52,7 @@ const Auth = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     setIsLoading(true);
-    dispatch({ type: AUTH_ERROR_OCCURRED, payload: "" });
+    dispatch({ type: AUTH_ERROR_OCCURRED, payload: '' });
     if (isSignup) {
       dispatch(registerUser(form, history, state));
     } else {
@@ -77,7 +77,7 @@ const Auth = () => {
           </h3>
 
           <p className="mt-1 text-center text-gray-500 dark:text-gray-400">
-            {isSignup ? "Create an account." : "Login to your account."}
+            {isSignup ? 'Create an account.' : 'Login to your account.'}
           </p>
 
           <form onSubmit={handleSubmit} name="auth_form">
@@ -148,7 +148,7 @@ const Auth = () => {
                 <div className="px-4 py-2 -mx-3">
                   <div className="mx-3">
                     <span className="font-semibold text-red-500 dark:text-red-900">
-                      Error:{" "}
+                      Error:{' '}
                       <span className="text-sm text-red-600 dark:text-red-200">
                         {errors}
                       </span>
@@ -185,7 +185,7 @@ const Auth = () => {
                     ></path>
                   </svg>
                 )}
-                {isSignup ? "Create Account" : "Login"}
+                {isSignup ? 'Create Account' : 'Login'}
               </button>
             </div>
           </form>
@@ -252,14 +252,14 @@ const Auth = () => {
 
         <div className="flex items-center justify-center py-4 text-center bg-gray-300 dark:bg-gray-700">
           <span className="text-sm text-gray-600 dark:text-gray-200">
-            {!isSignup ? "Don't have an account?" : "Already have an account?"}{" "}
+            {!isSignup ? "Don't have an account?" : 'Already have an account?'}{' '}
           </span>
 
           <button
             onClick={switchMode}
             className="mx-2 text-sm font-bold text-blue-600 dark:text-blue-400 hover:text-blue-500"
           >
-            {!isSignup ? "Register" : "Login"}
+            {!isSignup ? 'Register' : 'Login'}
           </button>
         </div>
       </div>

@@ -19,12 +19,12 @@ const transactionSchema = mongoose.Schema({
   },
   investment: {
     type: Number,
-    required: true
+    required: true,
   },
   transactedAt: {
     type: Date,
-    default: Date.now
-  }
+    default: Date.now,
+  },
 });
 
 var Transaction = mongoose.model('Transaction', transactionSchema);

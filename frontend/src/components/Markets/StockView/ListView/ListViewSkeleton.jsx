@@ -1,7 +1,7 @@
 const ListViewSkeleton = () => {
   return (
     <>
-      {[...Array(10).keys()].map(index => (
+      {[...Array(10).keys()].map((index) => (
         <tr key={index}>
           <td className="bg-white dark:bg-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600">
             <div className="animate-pulse flex space-x-4">
@@ -73,6 +73,6 @@ const ListViewSkeleton = () => {
       ))}
     </>
   );
-}
+};
 
 export default ListViewSkeleton;

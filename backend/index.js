@@ -1,20 +1,20 @@
 // required packages
-import path from "path";
-import http from "http";
-import cors from "cors";
-import dotenv from "dotenv";
-import express from "express";
-import mongoose from "mongoose";
-import { fileURLToPath } from "url";
-import { Server } from "socket.io";
+import path from 'path';
+import http from 'http';
+import cors from 'cors';
+import dotenv from 'dotenv';
+import express from 'express';
+import mongoose from 'mongoose';
+import { fileURLToPath } from 'url';
+import { Server } from 'socket.io';
 
 // api functions and routes
-import stockRoutes from "./routes/stocks.js";
-import userRoutes from "./routes/users.js";
-import purchasedStockRoutes from "./routes/purchased_stocks.js";
-import actionLogRoutes from "./routes/action_logs.js";
-import transactionRoutes from "./routes/transactions.js";
-import { tickers } from "./web_sockets/tickers.js";
+import stockRoutes from './routes/stocks.js';
+import userRoutes from './routes/users.js';
+import purchasedStockRoutes from './routes/purchased_stocks.js';
+import actionLogRoutes from './routes/action_logs.js';
+import transactionRoutes from './routes/transactions.js';
+import { tickers } from './web_sockets/tickers.js';
 
 // environment configuration
 dotenv.config();
@@ -32,20 +32,20 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 
 // express.js routes
-app.get("/", (req, res) => {
-  res.sendFile(__dirname + "/index.html");
+app.get('/', (req, res) => {
+  res.sendFile(__dirname + '/index.html');
 });
-app.use("/stocks", stockRoutes);
-app.use("/user", userRoutes);
-app.use("/purchased", purchasedStockRoutes);
-app.use("/logs", actionLogRoutes);
-app.use("/transactions", transactionRoutes);
-app.get("*", (req, res) => {
-  res.status(404).sendFile(__dirname + "/not_found.html");
+app.use('/stocks', stockRoutes);
+app.use('/user', userRoutes);
+app.use('/purchased', purchasedStockRoutes);
+app.use('/logs', actionLogRoutes);
+app.use('/transactions', transactionRoutes);
+app.get('*', (req, res) => {
+  res.status(404).sendFile(__dirname + '/not_found.html');
 });
 
 // socket.io data emission
-io.on("connection", (socket) => {
+io.on('connection', (socket) => {
   tickers(socket);
 });
 

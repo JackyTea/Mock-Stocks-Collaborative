@@ -1,4 +1,8 @@
-import { GET_ALL_STOCKS, GET_ONE_STOCK, SORT_STOCKS_BY_FIELD } from '../constants/actions';
+import {
+  GET_ALL_STOCKS,
+  GET_ONE_STOCK,
+  SORT_STOCKS_BY_FIELD,
+} from '../constants/actions';
 
 // handle getting and filtering stocks
 const stocksReducer = (stocks = [], action) => {
@@ -10,13 +14,19 @@ const stocksReducer = (stocks = [], action) => {
     case SORT_STOCKS_BY_FIELD:
       return stocks.slice().sort((a, b) => {
         if (action.payload.reverse) {
-          return (a[action.payload.field] > b[action.payload.field]) ? 1 : 
-          ((b[action.payload.field] > a[action.payload.field]) ? -1 : 0);
+          return a[action.payload.field] > b[action.payload.field]
+            ? 1
+            : b[action.payload.field] > a[action.payload.field]
+            ? -1
+            : 0;
         } else {
-          return (a[action.payload.field] < b[action.payload.field]) ? 1 : 
-          ((b[action.payload.field] < a[action.payload.field]) ? -1 : 0);
+          return a[action.payload.field] < b[action.payload.field]
+            ? 1
+            : b[action.payload.field] < a[action.payload.field]
+            ? -1
+            : 0;
         }
-      })
+      });
     default:
       return stocks;
   }

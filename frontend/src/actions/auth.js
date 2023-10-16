@@ -4,7 +4,7 @@ import {
   userInfo,
   updateUsername,
   removeUser,
-} from "../api/index.js";
+} from '../api/index.js';
 import {
   AUTH,
   AUTH_ERROR_OCCURRED,
@@ -12,14 +12,14 @@ import {
   USER_ERROR_OCCURRED,
   USER_INFO,
   USER_UPDATE_NAME,
-} from "../constants/actions";
+} from '../constants/actions';
 
 // POST /user/login
 export const loginUser = (formInput, router, state) => async (dispatch) => {
   try {
     const { data } = await login(formInput);
     dispatch({ type: AUTH, data });
-    router(state?.from || "/");
+    router(state?.from || '/');
   } catch (error) {
     if (error.response) {
       dispatch({
@@ -27,7 +27,7 @@ export const loginUser = (formInput, router, state) => async (dispatch) => {
         payload: error.response.data.message,
       });
     } else {
-      dispatch({ type: AUTH_ERROR_OCCURRED, payload: "Auth server is down!" });
+      dispatch({ type: AUTH_ERROR_OCCURRED, payload: 'Auth server is down!' });
     }
   }
 };
@@ -37,7 +37,7 @@ export const registerUser = (formInput, router, state) => async (dispatch) => {
   try {
     const { data } = await register(formInput);
     dispatch({ type: AUTH, data });
-    router(state?.from || "/");
+    router(state?.from || '/');
   } catch (error) {
     if (error.response) {
       dispatch({
@@ -45,7 +45,7 @@ export const registerUser = (formInput, router, state) => async (dispatch) => {
         payload: error.response.data.message,
       });
     } else {
-      dispatch({ type: AUTH_ERROR_OCCURRED, payload: "Auth server is down!" });
+      dispatch({ type: AUTH_ERROR_OCCURRED, payload: 'Auth server is down!' });
     }
   }
 };
@@ -65,7 +65,7 @@ export const updateUserName = (formInput, router) => async (dispatch) => {
   try {
     const { data } = await updateUsername(formInput);
     dispatch({ type: USER_UPDATE_NAME, data });
-    router("/");
+    router('/');
   } catch (error) {
     if (error.response) {
       dispatch({
@@ -75,7 +75,7 @@ export const updateUserName = (formInput, router) => async (dispatch) => {
     } else {
       dispatch({
         type: USER_ERROR_OCCURRED,
-        payload: "Accounts server is down!",
+        payload: 'Accounts server is down!',
       });
     }
   }
@@ -86,7 +86,7 @@ export const removeUserAccount = (router) => async (dispatch) => {
   try {
     await removeUser();
     dispatch({ type: DELETE_USER, payload: null });
-    router("/");
+    router('/');
   } catch (error) {
     console.log(error.response.data.message);
     if (error.response) {
@@ -97,7 +97,7 @@ export const removeUserAccount = (router) => async (dispatch) => {
     } else {
       dispatch({
         type: USER_ERROR_OCCURRED,
-        payload: "Accounts server is down!",
+        payload: 'Accounts server is down!',
       });
     }
   }

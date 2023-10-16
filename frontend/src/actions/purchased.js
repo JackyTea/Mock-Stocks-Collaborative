@@ -4,7 +4,7 @@ import {
   addPurchasedStock,
   updatePurchasedStock,
   removePurchasedStock,
-} from "../api/index.js";
+} from '../api/index.js';
 import {
   GET_ALL_PURCHASED,
   GET_ONE_PURCHASED,
@@ -12,7 +12,7 @@ import {
   UPDATE_PURCHASED,
   REMOVE_PURCHASED,
   PURCHASED_ERROR_OCCURRED,
-} from "../constants/actions";
+} from '../constants/actions';
 
 // GET /purchased
 export const getPurchases = () => async (dispatch) => {
@@ -28,7 +28,7 @@ export const getPurchases = () => async (dispatch) => {
     } else {
       dispatch({
         type: PURCHASED_ERROR_OCCURRED,
-        payload: "Investment server is down!",
+        payload: 'Investment server is down!',
       });
     }
   }
@@ -48,7 +48,7 @@ export const getPurchase = (id) => async (dispatch) => {
     } else {
       dispatch({
         type: PURCHASED_ERROR_OCCURRED,
-        payload: "Investment server is down!",
+        payload: 'Investment server is down!',
       });
     }
   }
@@ -69,7 +69,7 @@ export const addPurchase = (formInput, router) => async (dispatch) => {
     } else {
       dispatch({
         type: PURCHASED_ERROR_OCCURRED,
-        payload: "Investment server is down!",
+        payload: 'Investment server is down!',
       });
     }
   }
@@ -82,7 +82,7 @@ export const updatePurchase =
       const { data } = await updatePurchasedStock(id, formInput);
       dispatch({ type: UPDATE_PURCHASED, payload: data });
       if (sharesBought < 0 && Math.abs(sharesBought) >= sharesHeld) {
-        router({ pathname: "/purchased/", state: { updated: true } });
+        router({ pathname: '/purchased/', state: { updated: true } });
         return;
       }
       router({ pathname: `/purchased/${id}`, state: { updated: true } });
@@ -95,7 +95,7 @@ export const updatePurchase =
       } else {
         dispatch({
           type: PURCHASED_ERROR_OCCURRED,
-          payload: "Investment server is down!",
+          payload: 'Investment server is down!',
         });
       }
     }
@@ -106,7 +106,7 @@ export const removePurchase = (id, router) => async (dispatch) => {
   try {
     await removePurchasedStock(id);
     dispatch({ type: REMOVE_PURCHASED, payload: null });
-    router({ pathname: "/purchased/", state: { updated: true } });
+    router({ pathname: '/purchased/', state: { updated: true } });
   } catch (error) {
     if (error.response) {
       dispatch({
@@ -116,7 +116,7 @@ export const removePurchase = (id, router) => async (dispatch) => {
     } else {
       dispatch({
         type: PURCHASED_ERROR_OCCURRED,
-        payload: "Investment server is down!",
+        payload: 'Investment server is down!',
       });
     }
   }
