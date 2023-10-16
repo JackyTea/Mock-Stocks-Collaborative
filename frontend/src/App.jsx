@@ -28,38 +28,42 @@ const App = () => {
           <Route exact="true" path="/markets" element={<Markets />} />
           <Route exact="true" path="/auth" element={<Auth />} />
           <Route exact="true" path="/stock/:id" element={<StockDetails />} />
-          <Route exact="true" path="/dashboard" element={<ProtectedRoute />}>
-            <Route exact="true" path="/dashboard" element={<Dashboard />} />
-          </Route>
-          <Route exact="true" path="/purchased" element={<ProtectedRoute />}>
-            <Route
-              exact="true"
-              path="/purchased"
-              element={<PurchasedStocks />}
-            />
-          </Route>
+          <Route
+            exact="true"
+            path="/dashboard"
+            element={
+              <ProtectedRoute>
+                <Dashboard />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            exact="true"
+            path="/purchased"
+            element={
+              <ProtectedRoute>
+                <PurchasedStocks />
+              </ProtectedRoute>
+            }
+          />
           <Route
             exact="true"
             path="/purchased/:id"
-            element={<ProtectedRoute />}
-          >
-            <Route
-              exact="true"
-              path="/purchased/:id"
-              element={<PurchasedStockDetails />}
-            />
-          </Route>
+            element={
+              <ProtectedRoute>
+                <PurchasedStockDetails />
+              </ProtectedRoute>
+            }
+          />
           <Route
             exact="true"
             path="/transaction/:id"
-            element={<ProtectedRoute />}
-          >
-            <Route
-              exact="true"
-              path="/transaction/:id"
-              element={<TransactionForm />}
-            />
-          </Route>
+            element={
+              <ProtectedRoute>
+                <TransactionForm />
+              </ProtectedRoute>
+            }
+          />
           <Route render={() => <NotFound />} />
         </Routes>
         <Footer />
