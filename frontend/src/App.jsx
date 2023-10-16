@@ -64,7 +64,7 @@ const App = () => {
               </ProtectedRoute>
             }
           />
-          <Route render={() => <NotFound />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
         <Footer />
       </ScrollToTop>
