@@ -59,8 +59,8 @@ This project uses [JSON](https://www.json.org/json-en.html) to represent stock d
     "ticker": "String",
     "exchange": "String",
     "name": "String",
-    "initialPrice": 0.00,
-    "currentPrice": 0.00,
+    "initialPrice": 0.0,
+    "currentPrice": 0.0,
     "description": "String",
     "ipoDate": "String",
     "siteURL": "String",
@@ -125,17 +125,17 @@ npm i
 
 Refer to the [`package.json`](https://github.com/JackyTea/Mock-Stocks/blob/main/frontend/package.json) in the [`/frontend`](https://github.com/JackyTea/Mock-Stocks/tree/main/frontend) directory for more information about what is being installed.
 
-Then, setup the `.env` file in the root of the [`/frontend`](https://github.com/JackyTea/Mock-Stocks/tree/main/frontend) directory. (**Note**: this will be gitignored) Also see that `REACT_APP_GUEST_EMAIL` and `REACT_APP_GUEST_PASS` take [base64](https://en.wikipedia.org/wiki/Base64) encoded strings. You can easily encode your credentials using this [site](https://www.base64encode.org/) or with the [btoa()](https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/btoa) function.
+Then, setup the `.env` file in the root of the [`/frontend`](https://github.com/JackyTea/Mock-Stocks/tree/main/frontend) directory. (**Note**: this will be gitignored) Also see that `VITE_GUEST_EMAIL` and `VITE_GUEST_PASS` take [base64](https://en.wikipedia.org/wiki/Base64) encoded strings. You can easily encode your credentials using this [site](https://www.base64encode.org/) or with the [btoa()](https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/btoa) function.
 
 ```bash
 # backend connection to REST API
-REACT_APP_STOCKS_API=api_url
+VITE_STOCKS_API=api_url
 
 # email of the guest account (encoded)
-REACT_APP_GUEST_EMAIL=base64_encoded_string
+VITE_GUEST_EMAIL=base64_encoded_string
 
 # password of the guest account (encoded)
-REACT_APP_GUEST_PASS=base64_encoded_string
+VITE_GUEST_PASS=base64_encoded_string
 ```
 
 Now you can spin up the frontend. Default port is `3000` for a [create-react-app](https://github.com/facebook/create-react-app) project.
@@ -177,30 +177,29 @@ MongoDB database structure following [normalized data models.](https://docs.mong
 
 **Technical Decisions**
 
-*Why React?*
+_Why React?_
 
 [React](https://reactjs.org/) provides the component based front-end framework needed to easily organize the project's many parts into easy to maintain and reuseable modules. React also provides many tools to help develop, debug and test your web application (e.g. [Context API](https://reactjs.org/docs/context.html) for light state management, [React Profiler](https://reactjs.org/docs/profiler.html) for optimizations, and [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/) for unit and integration testing). Additionally, it is a well-documented framework with a large community backing it to provide support.
 
-*Why Redux?*
+_Why Redux?_
 
 [Redux](https://redux.js.org/) provides a robust state-management system for the amount of data that this project handles. It provides a centralized store of data that is independent from the main app and can be accessed by any component without having to pass data down the component tree or lift state up. The app has data models for stocks, investments, activity logs, transactions logs and user profile data, making Redux a good choice for managing data as opposed to the [Context API](https://reactjs.org/docs/context.html) which is not as good for large amounts of data.
 
-*Why Redux Thunk?*
+_Why Redux Thunk?_
 
 [Redux Thunk](https://github.com/reduxjs/redux-thunk) is middleware for [Redux](https://redux.js.org/) that allows for actions to be called with a function as the return value (the thunk itself). This function contains a `dispatch` parameter for dispatching actions to the reducer. This allows for [side effects](https://www.yld.io/blog/the-not-so-scary-guide-to-functional-programming/#:~:text=A%20side%20effect%20is%20when,described%20as%20having%20side%20effects.) to occur first (e.g. an asynchronous API call) before dispatching the synchronous action.
 
-*Why TailwindCSS?*
+_Why TailwindCSS?_
 
 [TailwindCSS](https://tailwindcss.com/) is utility-first CSS framework that provides a set of primitive classes known as utilities for styling the application in a unopinionated way. These primitive classes include borders, colours, displays, positioning and spacing. TailwindCSS also allows for purging of unused css to reduce production file sizes via [PurgeCSS](https://purgecss.com/). It also provides easy configuration for [dark mode](https://tailwindcss.com/docs/dark-mode).
 
-*Why Chart.JS?*
+_Why Chart.JS?_
 
 [Chart.JS](https://www.chartjs.org/) is an easily configurable library for rendering charts via Javascript. It is quick to setup and use, offering animations out of the box and responsive properties.
 
-
 **Maintainability**
 
-*File Structure*
+_File Structure_
 
 An organized file hierarchy is used to keep things easy to find.
 
@@ -225,19 +224,19 @@ index.css
 setupTests.js
 ```
 
-*Component Based Architecture*
+_Component Based Architecture_
 
-The application is organized into reusable components that can be plugged into any part of application to avoid code duplication and maintain a clean structure. This also helps with performance as state changes for that component only re-render it instead of the whole virtual DOM._
+The application is organized into reusable components that can be plugged into any part of application to avoid code duplication and maintain a clean structure. This also helps with performance as state changes for that component only re-render it instead of the whole virtual DOM.\_
 
-*Redux and Context for Loose Coupling*
+_Redux and Context for Loose Coupling_
 
-For global states, [Redux](https://redux.js.org/)  and [Context API](https://reactjs.org/docs/context.html) are used to keep data in a centralized location and avoid the root `App` component become a monolith. This promotes loose coupling between components with different responsibilities. Props are only passed to sub-components of components that are related to each other. (e.g. the `StockView` passes props to its children components of `ListView` and `GridView` but not to other independent modules).
+For global states, [Redux](https://redux.js.org/) and [Context API](https://reactjs.org/docs/context.html) are used to keep data in a centralized location and avoid the root `App` component become a monolith. This promotes loose coupling between components with different responsibilities. Props are only passed to sub-components of components that are related to each other. (e.g. the `StockView` passes props to its children components of `ListView` and `GridView` but not to other independent modules).
 
-*Naming Conventions*
+_Naming Conventions_
 
 Components have a descriptive name about their role in the UI. (e.g. `StockCard` displays a stock and its info in a card-like container).
 
-*Future Plans To Improve Maintainability*
+_Future Plans To Improve Maintainability_
 
 - Further componentization of UI modules
 - Linting via [ESLint](https://eslint.org/) to enforce strict coding style and standards such as the [AirBnB style guide](https://github.com/airbnb/javascript/tree/master/react). (This will also help with open-sourcing as contributors will have to follow a standard.)
@@ -245,52 +244,53 @@ Components have a descriptive name about their role in the UI. (e.g. `StockCard`
 
 **Scalability**
 
-*Codebase*
+_Codebase_
 
 As described in the **Maintainability** section above, the codebase is organized into independent units with a incoming data being globally accessible and not store in a monolithic component. This makes the application scalable from a code standpoint, allowing for multiple developers to contribute and maintain easily.
 
-*Components*
+_Components_
 
 The component architecture promotes single responsibility and separation of concerns. (e.g. `GridView` is responsible for displaying a grid like view, while `Dashboard` displays user settings and info, very different responsibilities that are loosely coupled.)
 
-*Testing Strategy*
+_Testing Strategy_
 
 Small [Jest](https://jestjs.io/) unit tests to verify correctly loading UI components and a small end-to-end [Cypress](https://www.cypress.io/) test were implement. Testing strategy still has to be expanded.
 
 Priority (work from bottom up)
+
 1. High Value features (stock market display and investments display, transaction form)
 2. Edge cases in high value features (entering too many shares in the transaction form should display an error and not let the transaction go through)
 3. Things easy to break (to be discovered)
 4. Basic component testing
 
 Future plans include:
+
 - increasing unit test coverage for all components
 - end-to-end tests for common user flows such as selling investments and making changes to the profile
 
-
 **Performance**
 
-*Using The Production React Build*
+_Using The Production React Build_
 
 The [production build of React](https://reactjs.org/docs/optimizing-performance.html#use-the-production-build) minifies code and bundles it for smaller size, optimizations and better performance.
 
-*Removing Unused CSS*
+_Removing Unused CSS_
 
 [TailwindCSS](https://tailwindcss.com/) takes advantage of [PurgeCSS](https://purgecss.com/) to remove unused CSS for smaller file sizes in the final production build.
 
-*Avoiding Data Mutation in States*
+_Avoiding Data Mutation in States_
 
 React makes a copy of state and compares it to a previous snapshot of the state before re-rendering a component if there are differences. Creating new objects via methods like `filter()` and `map()` will mean React only has to do a shallow check before deciding to re-render or not. Mutation causes issues as React has to traverse the mutated object like an array (since the array still has the same address but different values, React will have to do a deep check) to find the difference, taking much more time.
 
-*Asynchronous API Calls*
+_Asynchronous API Calls_
 
 Asynchronous API calls prevent the UI from being unresponsive while requests are made to the backend. They are done in the background while the user can still interact with the UI. Synchronous calls will take time and hinder the loading of the page, leading to a bad user experience.
 
-*Pagination of Large Data Collections*
+_Pagination of Large Data Collections_
 
 Pagination is to display incoming stock data for both user experience and avoiding too many DOM elements on the page at the same time. (This can let us scale to bigger data collections later on). The chart animations may hinder webpage performance so limiting them on the screen helps with performance.
 
-*Future Plans To Improve Performance*
+_Future Plans To Improve Performance_
 
 - Elimination of unused code and optimizing algorithms used in methods.
 
@@ -300,62 +300,61 @@ Pagination is to display incoming stock data for both user experience and avoidi
 
 - Caching API calls for stocks so a request only has to be made once. There will still be open WebSocket connections for updating the stock prices. (With stock data being dynamic, this may or may not be feasible)
 
-- Implement caching for static content (such as certain homepage and header components) and delivering them via a [CDN](https://en.wikipedia.org/wiki/Content_delivery_network) or using [SSR](https://www.omnisci.com/technical-glossary/server-side-rendering#:~:text=Server%2Dside%20rendering%20(SSR),rendered%20page%20to%20the%20client.) (server side rendering) to improve load times.
+- Implement caching for static content (such as certain homepage and header components) and delivering them via a [CDN](https://en.wikipedia.org/wiki/Content_delivery_network) or using [SSR](<https://www.omnisci.com/technical-glossary/server-side-rendering#:~:text=Server%2Dside%20rendering%20(SSR),rendered%20page%20to%20the%20client.>) (server side rendering) to improve load times.
 
 - Converting the application to a PWA ([Progressive Web App](https://web.dev/what-are-pwas/)) to take advantage of caching, offline availability and native mobile features.
 
-
 **Security**
 
-*Client Side Validation Only For UX*
+_Client Side Validation Only For UX_
 
 All validations will be made server-side and any validations made on the client-end will be purely for UI/UX (e.g. showing an error on buying too many shares of a stock). The server will do the real validations. All clients will be treated as if they are malicious, so incoming requests must be validated server-side.
 
-*Future Plans To Improve Security*
+_Future Plans To Improve Security_
 
 - Store JWT Tokens in `httpOnly` cookie to avoid Cross-Site Scripting [XSS](https://owasp.org/www-community/attacks/xss/) attacks. There is still a vulnerability to Cross-Site Request Forgery [CRSF](https://owasp.org/www-community/attacks/csrf) attacks that the `SameSite=strict` flag may mitigate slightly but there is no foolproof security. See this [StackOverflow article on storing JWT tokens](https://stackoverflow.com/a/65956741).
 
 **Accessibility**
 
-*Future Plans to Improve Accessibility*
+_Future Plans to Improve Accessibility_
 
 - Using an accessibility checker such as one from the [list here](https://www.w3.org/WAI/ER/tools/) to meet Web Content Accessibility Guidelines [WCAG 2.1](https://www.w3.org/WAI/WCAG21/quickref/) to make sure the site is accessible to visually, audio impaired with semantic tags, labels and structure of the DOM.
 
-- Implement [i18next](https://react.i18next.com/) for  internationalization. (Supporting various languages for non-English speakers).
+- Implement [i18next](https://react.i18next.com/) for internationalization. (Supporting various languages for non-English speakers).
 
 ## Back-End Insights
 
 **Technical Decisions**
 
-*Why Node.JS?*
+_Why Node.JS?_
 
-[Node.JS](https://nodejs.org/en/) allows for JS to be written on the  back-end, enabling rapid development and lower learning curve for developers. It is a flexible, unopinionated environment that supports many libraries for building custom solutions. Its single-threaded event loop architecture eliminates the need for thread management or the management of connections/pools. It’s also resource-efficient, using a fraction of the memory of typical event processing systems and is whyNode.js is used by some of the most high traffic sites on the web, including Twitter, Zillow and Discord. It is also well documented and has a large community backing it for support.
+[Node.JS](https://nodejs.org/en/) allows for JS to be written on the back-end, enabling rapid development and lower learning curve for developers. It is a flexible, unopinionated environment that supports many libraries for building custom solutions. Its single-threaded event loop architecture eliminates the need for thread management or the management of connections/pools. It’s also resource-efficient, using a fraction of the memory of typical event processing systems and is whyNode.js is used by some of the most high traffic sites on the web, including Twitter, Zillow and Discord. It is also well documented and has a large community backing it for support.
 
-*Why Express.JS*
+_Why Express.JS_
 
 [Express.JS](https://expressjs.com/) is a fast, unopinionated, minimalist web framework for Node.js, it is widely used and has a good community behind it. It allows for quick development of a web server supporting RESTful methods (GET, POST, PUT, PATCH, DELETE, etc...).
 
-*Why MongoDB?*
+_Why MongoDB?_
 
 [MongoDB](https://www.mongodb.com/) is a widely used NoSQL database that allows for a flexible schema without always having to write schema migrations like in relational databases. It is also performant, highly scalable and supports indexing. For me, MongoDB is easy to setup and deploy, allowing for fast development. Also supports [ACID](https://database.guide/what-is-acid-in-databases/) transactions [unlike other NoSQL databases](https://www.mongodb.com/nosql-explained/nosql-vs-sql).
 
-*Why SocketIO?*
+_Why SocketIO?_
 
 [Socket.IO](https://socket.io/) is a WebSocket library that enables realtime, bi-directional communication between web clients and servers. For the purpose of updating stock prices frequently, a websocket solution is better than constantly polling the server.
 
 **Maintainability**
 
-*MVC-Like Structure*
+_MVC-Like Structure_
 
 The MVC-Like structure separates parts of the backend into manageable and maintainable sections. Views (routes), models (Mongo schemas) and controllers that are accessed via the routes.
 
-*Future Plans to Improve Maintainability*
+_Future Plans to Improve Maintainability_
 
 - Enforce a strict linting standard for code style and practices
 
 **Scalability**
 
-*Future Plans to Improve Scalability*
+_Future Plans to Improve Scalability_
 
 - Horizontal scaling of servers with more [Heroku Dynos](https://www.heroku.com/dynos#:~:text=The%20containers%20used%20at%20Heroku,on%20a%20user%2Dspecified%20command.&text=Dynos%20are%20the%20building%20blocks,app%2C%20from%20simple%20to%20sophisticated.) and using load balancing to distribute network requests.
 
@@ -365,16 +364,15 @@ The MVC-Like structure separates parts of the backend into manageable and mainta
 
 **Performance**
 
-*Future Plans To Improve Performance*
+_Future Plans To Improve Performance_
 
 - Possibly caching stock data in memory on the server to avoid too many database queries.
 
 - Make use of more [indexes](https://docs.mongodb.com/manual/indexes/) to improve lookup times and avoid collection traversals.
 
-
 **Security**
 
-*JWT and Future Plans to Improve Security*
+_JWT and Future Plans to Improve Security_
 
 [JWT](https://jwt.io/) was chosen as the authentication method as they are lightweight and do not take up space on server memory, instead they are stored client side and allows the server to horizontally scale easier as opposed to sessions. Only issue is the security vulnerability against XSS attacks where a malicious client may abuse the token. This is why I enforced a short expiry time, only use server-side validation for requests and am looking into storing the token in an httpOnly cookie as opposed to in localStorage where it can be easily read by malicious javascript injections.
 
@@ -382,7 +380,7 @@ The MVC-Like structure separates parts of the backend into manageable and mainta
 
 No current testing strategy for the backend portion of this application.
 
-*Future Plans To Improve Testing Strategy*
+_Future Plans To Improve Testing Strategy_
 
 - Implement unit, integration and e2e tests starting from small units and using those tests to build up to critical features.
 
