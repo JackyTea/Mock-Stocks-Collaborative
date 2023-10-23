@@ -21,7 +21,8 @@
     "web-vitals": "^3.5.0"
   },
   "scripts": {
-    "start": "vite"
+    "start": "vite",
+    "build": "tsc"
   },
   "eslintConfig": {
     "extends": [
