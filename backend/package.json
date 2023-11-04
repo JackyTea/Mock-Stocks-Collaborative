@@ -5,7 +5,7 @@
   "description": "Socket IO Backend for Stocks",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
+    "start": "node dist/index.js",
     "build": "tsc"
   },
   "author": "JackyTea",
