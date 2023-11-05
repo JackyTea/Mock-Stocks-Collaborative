@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { useParams } from 'react-router';
+import { useParams } from 'react-router-dom';
 import socketIOClient from 'socket.io-client';
 import { useDispatch, useSelector } from 'react-redux';
 import { getStock } from '../../actions/stocks';

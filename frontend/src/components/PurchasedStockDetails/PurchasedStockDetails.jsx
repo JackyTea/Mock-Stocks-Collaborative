@@ -5,7 +5,7 @@ import { useLocation } from 'react-router-dom';
 import socketIOClient from 'socket.io-client';
 import { getStock } from '../../actions/stocks';
 import { getPurchase } from '../../actions/purchased';
-import { useParams } from 'react-router';
+import { useParams } from 'react-router-dom';
 import CurrentPrice from '../CurrentPrice/CurrentPrice';
 import InvestmentPrice from '../InvestmentPrice/InvestmentPrice';
 import PurchasedStockDetailsSkeleton from './PurchasedStockDetailsSkeleton';
