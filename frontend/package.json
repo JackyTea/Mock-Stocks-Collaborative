@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@vitejs/plugin-react-swc": "^3.4.0",
+    "@vitejs/plugin-react-swc": "^3.4.1",
     "axios": "^1.5.1",
     "chart.js": "^4.4.0",
     "jwt-decode": "^3.1.2",
