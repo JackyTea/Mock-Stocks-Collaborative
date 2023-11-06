@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { Link, NavLink, useNavigate, useLocation } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import decode from 'jwt-decode';
+import { jwtDecode } from 'jwt-decode';
 import ToggleTheme from '../ToggleTheme/ToggleTheme';
 import { getUserInfo } from '../../actions/auth';
 import { LOGOUT } from '../../constants/actions';
@@ -32,7 +32,7 @@ const Navigation = () => {
   useEffect(() => {
     const token = user?.token;
     if (token) {
-      const decodedToken = decode(token);
+      const decodedToken = jwtDecode(token);
       if (decodedToken.exp * 1000 < new Date().getTime()) {
         logout();
       }
