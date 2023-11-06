@@ -4,8 +4,14 @@ updates:
     directory: "/frontend"
     schedule:
       interval: "weekly"
+    labels:
+      - "dependencies"
+      - "frontend"
 
   - package-ecosystem: "npm"
     directory: "/backend"
     schedule:
       interval: "weekly"
+    labels:
+      - "dependencies"
+      - "backend"
