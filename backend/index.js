@@ -33,15 +33,16 @@ app.use(cors());
 
 // express.js routes
 app.get('/', (req, res) => {
-  res.sendFile(__dirname + '/index.html');
+  res.sendFile(path.join(__dirname, '../index.html'));
 });
+app.use(express.static(path.join(__dirname, 'dist')));
 app.use('/stocks', stockRoutes);
 app.use('/user', userRoutes);
 app.use('/purchased', purchasedStockRoutes);
 app.use('/logs', actionLogRoutes);
 app.use('/transactions', transactionRoutes);
 app.get('*', (req, res) => {
-  res.status(404).sendFile(__dirname + '/not_found.html');
+  res.status(404).sendFile(path.join(__dirname, '../not_found.html'));
 });
 
 // socket.io data emission
