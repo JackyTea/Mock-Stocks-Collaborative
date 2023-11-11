@@ -15,5 +15,9 @@
     "sourceMap": true,
     "lib": ["es2022"],  // Only include ES2022 for Node.js, no DOM
     "newLine": "crlf"
-  }
+  },
+  "include": [
+    "node_modules/socket.io/dist/index.d.ts",
+  ]
+  
 }

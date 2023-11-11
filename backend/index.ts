@@ -27,8 +27,9 @@ const server = http.createServer(app);
 const io = new Server(server);
 
 // express.js configuration
-app.use(express.json({ extended: true }));
-app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+app.use(cors());
+app.use(express.urlencoded({ limit: '50mb', extended: true }));
 app.use(cors());
 
 // express.js routes
@@ -51,8 +52,9 @@ io.on('connection', (socket) => {
 });
 
 // mongodb and server connections
-const CONNECTION_URL = process.env.MONGO_CONNECTION_STRING;
 const PORT = process.env.PORT || 5000;
+const CONNECTION_URL = process.env.CONNECTION_URL || 'mongodb://localhost:27017/mock-stocks-collaborative';
+
 
 mongoose
   .connect(CONNECTION_URL)
