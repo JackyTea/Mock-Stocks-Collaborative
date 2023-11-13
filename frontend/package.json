@@ -43,7 +43,7 @@
     ]
   },
   "devDependencies": {
-    "@types/chart.js": "^2.9.39",
+    "@types/chart.js": "^2.9.40",
     "@typescript-eslint/eslint-plugin": "^6.10.0",
     "@typescript-eslint/parser": "^6.10.0",
     "autoprefixer": "^10.4.16",
