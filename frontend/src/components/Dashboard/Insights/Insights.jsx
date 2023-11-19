@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getPurchases } from '../../../actions/purchased';
+import { getPurchases } from 'actions/purchased';
 import InsightsChart from './InsightsChart';
 import InsightsSkeleton from './InsightsSkeleton';
 

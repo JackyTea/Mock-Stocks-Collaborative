@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { updateUserName, removeUserAccount } from '../../../actions/auth';
-import { USER_ERROR_OCCURRED } from '../../../constants/actions';
+import { updateUserName, removeUserAccount } from 'actions/auth';
+import { USER_ERROR_OCCURRED } from 'constants/actions';
 
 const initialState = { firstName: '', lastName: '' };
 

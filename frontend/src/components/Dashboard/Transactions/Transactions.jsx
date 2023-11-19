@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getTransactions } from '../../../actions/transactions';
+import { getTransactions } from 'actions/transactions';
 import TransactionsSkeleton from './TransactionsSkeleton';
 
 const Transactions = () => {

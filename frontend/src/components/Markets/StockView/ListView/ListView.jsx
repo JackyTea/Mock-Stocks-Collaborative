@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import ListViewSkeleton from './ListViewSkeleton';
-import CurrentPrice from '../../../CurrentPrice/CurrentPrice';
-import PriceChart from '../../../PriceChart/PriceChart';
+import CurrentPrice from 'components/CurrentPrice/CurrentPrice';
+import PriceChart from 'components/PriceChart/PriceChart';
 
 const ListView = (props) => {
   const {

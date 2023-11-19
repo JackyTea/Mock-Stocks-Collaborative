@@ -3,10 +3,10 @@ import { Link } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 import socketIOClient from 'socket.io-client';
 import { useDispatch, useSelector } from 'react-redux';
-import { getStock } from '../../actions/stocks';
+import { getStock } from 'actions/stocks';
 import StockDetailsSkeleton from './StockDetailsSkeleton';
-import CurrentPrice from '../CurrentPrice/CurrentPrice';
-import PriceChart from '../PriceChart/PriceChart';
+import CurrentPrice from 'components/CurrentPrice/CurrentPrice';
+import PriceChart from 'components/PriceChart/PriceChart';
 
 const StockDetails = (props) => {
   const { id } = useParams();

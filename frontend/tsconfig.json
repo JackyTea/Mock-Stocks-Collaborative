@@ -15,6 +15,19 @@
     "rootDir": ".",
     "sourceMap": true,
     "lib": ["es2022", "dom", "dom.iterable"],
-    "newLine":"crlf"
+    "newLine":"crlf",
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"],
+      "actions/*": ["./src/actions/*"],
+      "api": ["./src/api/*"],
+      "images": ["./assets/images/*"],
+      "components/*": ["./components/*"],
+      "constants/*": ["./constants/*"],
+      "contexts/*": ["/contexts/*"],
+    }
   }
 }
+
+//stonk-7
+// Need aliases for: StockCard, CurrentPrice, PriceChart, Pagination, ToggleTheme, InvestmentPrice

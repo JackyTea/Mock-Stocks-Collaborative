@@ -1,8 +1,8 @@
-import { fetchTransactions } from '../api/index.js';
+import { fetchTransactions } from 'api/index.js';
 import {
   GET_ALL_TRANSACTIONS,
   TRANSACTION_ERROR_OCCURRED,
-} from '../constants/actions';
+} from 'constants/actions';
 
 // GET /transactions
 export const getTransactions = () => async (dispatch) => {

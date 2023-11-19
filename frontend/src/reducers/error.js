@@ -5,7 +5,7 @@ import {
   USER_ERROR_OCCURRED,
   TRANSACTION_ERROR_OCCURRED,
   LOG_ERROR_OCCURRED,
-} from '../constants/actions';
+} from 'constants/actions';
 
 // errors for authentication
 const authErrorsReducer = (state = [], action) => {
