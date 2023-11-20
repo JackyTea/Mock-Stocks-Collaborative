@@ -3,11 +3,11 @@ import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 import socketIOClient from 'socket.io-client';
-import { getStock } from 'actions/stocks';
-import { getPurchase } from 'actions/purchased';
+import { getStock } from '@/actions/stocks';
+import { getPurchase } from '@/actions/purchased';
 import { useParams } from 'react-router-dom';
-import CurrentPrice from 'components/CurrentPrice/CurrentPrice';
-import InvestmentPrice from 'components/InvestmentPrice/InvestmentPrice';
+import CurrentPrice from '@/components/CurrentPrice/CurrentPrice';
+import InvestmentPrice from '@/components/InvestmentPrice/InvestmentPrice';
 import PurchasedStockDetailsSkeleton from './PurchasedStockDetailsSkeleton';
 
 const PurchasedStockDetails = (props) => {

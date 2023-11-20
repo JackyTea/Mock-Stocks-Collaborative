@@ -4,7 +4,7 @@ import {
   userInfo,
   updateUsername,
   removeUser,
-} from 'api/index.js';
+} from '@/api/index';
 import {
   AUTH,
   AUTH_ERROR_OCCURRED,
@@ -12,7 +12,7 @@ import {
   USER_ERROR_OCCURRED,
   USER_INFO,
   USER_UPDATE_NAME,
-} from 'constants/actions';
+} from '@/constants/actions';
 
 // POST /user/login
 export const loginUser = (formInput, router, state) => async (dispatch) => {

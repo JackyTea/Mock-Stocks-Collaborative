@@ -1,5 +1,5 @@
 import React from 'react';
-import Stonks from 'images/stonks.webp';
+import Stonks from '@/assets/images/stonks.webp';
 
 const About = () => {
   return (

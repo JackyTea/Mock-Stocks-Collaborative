@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import socketIOClient from 'socket.io-client';
-import { getPurchases } from 'actions/purchased';
+import { getPurchases } from '@/actions/purchased';
 import { useDispatch, useSelector } from 'react-redux';
 import PurchaseListView from './PurchaseListView/PurchaseListView';
 import PurchaseListViewSkeleton from './PurchaseListView/PurchaseListViewSkeleton';

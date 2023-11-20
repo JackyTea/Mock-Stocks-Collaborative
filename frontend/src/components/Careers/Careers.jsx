@@ -1,5 +1,5 @@
 import React from 'react';
-import DefaultAvatarImage from 'images/avatar.jpg';
+import DefaultAvatarImage from '@/assets/images/avatar.jpg';
 
 const Careers = () => {
   return (

@@ -18,16 +18,14 @@
     "newLine":"crlf",
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./src/*"],
-      "actions/*": ["./src/actions/*"],
-      "api": ["./src/api/*"],
-      "images": ["./assets/images/*"],
-      "components/*": ["./components/*"],
-      "constants/*": ["./constants/*"],
-      "contexts/*": ["/contexts/*"],
+      "@/*": ["src/*"],
+      "@/actions/*": ["src/actions/*"],
+      "@/api/*": ["src/api/*"],
+      "@/assets*": ["src/assets/*"],
+      "@/components/*": ["src/components/*"],
+      "@/constants/*": ["src/constants/*"],
+      "@/contexts/*": ["src/contexts/*"],
     }
   }
 }
 
-//stonk-7
-// Need aliases for: StockCard, CurrentPrice, PriceChart, Pagination, ToggleTheme, InvestmentPrice

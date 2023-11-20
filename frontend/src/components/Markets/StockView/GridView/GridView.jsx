@@ -1,6 +1,6 @@
 import React from 'react';
 import GridViewSkeleton from './GridViewSkeleton';
-import StockCard from 'components/StockCard/StockCard';
+import StockCard from '@/components/StockCard/StockCard';
 
 const GridView = (props) => {
   const { socket, filteredStocks } = props;

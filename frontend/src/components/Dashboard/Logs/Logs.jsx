@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getLogs } from 'actions/logs';
+import { getLogs } from '@/actions/logs';
 import LogsSkeleton from './LogsSkeleton';
 
 const Logs = () => {

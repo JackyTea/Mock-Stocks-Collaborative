@@ -1,4 +1,4 @@
-import { GET_ALL_LOGS } from 'constants/actions';
+import { GET_ALL_LOGS } from '@/constants/actions';
 
 // handle fetching action logs
 const logsReducer = (transactions = [], action) => {

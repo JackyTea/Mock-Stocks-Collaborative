@@ -1,9 +1,9 @@
-import { fetchStocks, fetchStock } from 'api/index.js';
+import { fetchStocks, fetchStock } from '@/api/index.js';
 import {
   GET_ALL_STOCKS,
   GET_ONE_STOCK,
   MARKET_ERROR_OCCURRED,
-} from 'constants/actions.js';
+} from '@/constants/actions';
 
 // GET /stocks
 export const getStocks = () => async (dispatch) => {

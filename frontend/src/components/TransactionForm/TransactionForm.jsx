@@ -3,15 +3,15 @@ import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
-import { getStock } from 'actions/stocks';
-import { getUserInfo } from 'actions/auth';
+import { getStock } from '@/actions/stocks';
+import { getUserInfo } from '@/actions/auth';
 import {
   getPurchase,
   addPurchase,
   updatePurchase,
   removePurchase,
-} from 'actions/purchased';
-import { PURCHASED_ERROR_OCCURRED } from 'constants/actions';
+} from '@/actions/purchased';
+import { PURCHASED_ERROR_OCCURRED } from '@/constants/actions';
 
 const initialState = { stockId: null, sharesBought: 0 };
 

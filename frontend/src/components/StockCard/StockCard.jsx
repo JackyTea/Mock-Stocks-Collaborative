@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import CurrentPrice from 'components/CurrentPrice/CurrentPrice';
-import PriceChart from 'components/PriceChart/PriceChart';
+import CurrentPrice from '@/components/CurrentPrice/CurrentPrice';
+import PriceChart from '@/components/PriceChart/PriceChart';
 
 const StockCard = (props) => {
   const { socket, stock } = props;

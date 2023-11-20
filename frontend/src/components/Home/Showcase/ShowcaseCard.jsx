@@ -1,5 +1,5 @@
 import React from 'react';
-import StockCard from 'components/StockCard/StockCard';
+import StockCard from '@/components/StockCard/StockCard';
 import ShowcaseCardSkeleton from './ShowcaseCardSkeleton';
 
 const ShowcaseCard = (props) => {

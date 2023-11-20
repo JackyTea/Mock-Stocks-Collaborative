@@ -12,7 +12,7 @@ import {
   transactionErrorsReducer,
   logsErrorsReducer,
 } from './error';
-import { LOGOUT } from 'constants/actions';
+import { LOGOUT } from '@/constants/actions';
 
 const appReducer = combineReducers({
   stocksReducer,

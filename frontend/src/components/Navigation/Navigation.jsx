@@ -2,10 +2,10 @@ import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { Link, NavLink, useNavigate, useLocation } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { jwtDecode } from 'jwt-decode';
-import ToggleTheme from 'components/ToggleTheme/ToggleTheme';
-import { getUserInfo } from 'actions/auth';
-import { LOGOUT } from 'constants/actions';
-import DefaultAvatarImage from 'images/avatar.jpg';
+import ToggleTheme from '@/components/ToggleTheme/ToggleTheme';
+import { getUserInfo } from '@/actions/auth';
+import { LOGOUT } from '@/constants/actions';
+import DefaultAvatarImage from '@/assets/images/avatar.jpg';
 
 const Navigation = () => {
   const dispatch = useDispatch();

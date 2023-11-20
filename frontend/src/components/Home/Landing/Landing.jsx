@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import Stocks from 'images/stocks.svg';
+import Stocks from '@/assets/images/stocks.svg';
 
 const Landing = () => {
   const [user] = useState(JSON.parse(localStorage.getItem('profile')));
