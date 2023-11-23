@@ -1,5 +1,5 @@
-import { fetchLogs } from '../api/index.js';
-import { GET_ALL_LOGS, LOG_ERROR_OCCURRED } from '../constants/actions';
+import { fetchLogs } from '@/api/index.js';
+import { GET_ALL_LOGS, LOG_ERROR_OCCURRED } from '@/constants/actions';
 
 // GET /logs
 export const getLogs = () => async (dispatch) => {

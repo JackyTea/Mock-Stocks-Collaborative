@@ -4,7 +4,7 @@ import {
   addPurchasedStock,
   updatePurchasedStock,
   removePurchasedStock,
-} from '../api/index.js';
+} from '@/api/index.js';
 import {
   GET_ALL_PURCHASED,
   GET_ONE_PURCHASED,
@@ -12,7 +12,7 @@ import {
   UPDATE_PURCHASED,
   REMOVE_PURCHASED,
   PURCHASED_ERROR_OCCURRED,
-} from '../constants/actions';
+} from '@/constants/actions';
 
 // GET /purchased
 export const getPurchases = () => async (dispatch) => {

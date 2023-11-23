@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import socketIOClient from 'socket.io-client';
-import { getStocks } from '../../../actions/stocks';
+import { getStocks } from '@/actions/stocks';
 import {
   SORT_STOCKS_BY_FIELD,
   MARKET_ERROR_OCCURRED,
-} from '../../../constants/actions';
+} from '@/constants/actions';
 import ListView from './ListView/ListView';
 import GridView from './GridView/GridView';
 import TopInfoSection from './TopInfoSection/TopInfoSection';
-import Pagination from '../../Pagination/Pagination';
+import Pagination from '@/components/Pagination/Pagination';
 
 const StockView = () => {
   const socket = socketIOClient(import.meta.env.VITE_STOCKS_API, {
