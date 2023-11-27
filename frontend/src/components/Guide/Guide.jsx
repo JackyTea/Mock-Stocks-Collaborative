@@ -1,9 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import Step1 from '../../assets/images/step1.svg';
-import Step2 from '../../assets/images/step2.svg';
-import Step3 from '../../assets/images/step3.svg';
-import Step4 from '../../assets/images/step4.svg';
+import Step1 from '@/assets/images/step1.svg';
+import Step2 from '@/assets/images/step2.svg';
+import Step3 from '@/assets/images/step3.svg';
+import Step4 from '@/assets/images/step4.svg';
 
 const Guide = () => {
   return (

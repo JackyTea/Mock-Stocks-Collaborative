@@ -2,7 +2,7 @@ import {
   GET_ALL_STOCKS,
   GET_ONE_STOCK,
   SORT_STOCKS_BY_FIELD,
-} from '../constants/actions';
+} from '@/constants/actions';
 
 // handle getting and filtering stocks
 const stocksReducer = (stocks = [], action) => {
