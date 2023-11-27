@@ -4,7 +4,7 @@ import {
   ADD_PURCHASED,
   UPDATE_PURCHASED,
   REMOVE_PURCHASED,
-} from '../constants/actions';
+} from '@/constants/actions';
 
 // handle purchased stock actions
 const purchasedReducer = (purchased = [], action) => {
