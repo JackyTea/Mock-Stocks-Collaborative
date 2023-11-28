@@ -1,3 +1,4 @@
+import type { ServerToClientEvents, ClientToServerEvents } from './src/interfaces/interfaces.js';
 // required packages
 import path from 'path';
 import http from 'http';
@@ -6,7 +7,8 @@ import dotenv from 'dotenv';
 import express from 'express';
 import mongoose from 'mongoose';
 import { fileURLToPath } from 'url';
-import { Server } from 'socket.io';
+import type { Server } from 'socket.io';
+import type { Socket } from 'socket.io';
 
 // api functions and routes
 import stockRoutes from './routes/stocks.js';
@@ -17,6 +19,8 @@ import transactionRoutes from './routes/transactions.js';
 import { tickers } from './web_sockets/tickers.js';
 
 // environment configuration
+
+
 dotenv.config();
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -47,14 +51,15 @@ app.get('*', (req, res) => {
 });
 
 // socket.io data emission
-io.on('connection', (socket) => {
+io.on('connection', (socket: Socket) => {
   tickers(socket);
 });
 
 // mongodb and server connections
 const PORT = process.env.PORT || 5000;
-const CONNECTION_URL = process.env.CONNECTION_URL || 'mongodb://localhost:27017/mock-stocks-collaborative';
-
+const CONNECTION_URL =
+  process.env.CONNECTION_URL ||
+  'mongodb://localhost:27017/mock-stocks-collaborative';
 
 mongoose
   .connect(CONNECTION_URL)

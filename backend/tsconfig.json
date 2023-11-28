@@ -1,23 +1,24 @@
 {
   "compilerOptions": {
     "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
     "skipLibCheck": true,
     "target": "es2022",
-    "verbatimModuleSyntax": true,
+     "verbatimModuleSyntax": true,
     "allowJs": true,
     "resolveJsonModule": true,
     "strict": true,
     "noUncheckedIndexedAccess": true,
     "moduleResolution": "NodeNext",
     "module": "NodeNext",
-    "outDir": "dist",
+    "outDir": "build",
     "rootDir": ".",
     "sourceMap": true,
-    "lib": ["es2022"],  // Only include ES2022 for Node.js, no DOM
+    "lib": ["ES2022"],  // Only include ES2022 for Node.js, no DOM
     "newLine": "crlf"
   },
-  "include": [
-    "node_modules/socket.io/dist/index.d.ts",
-  ]
+  "paths": {
+    "*": ["src/declarations/*"]
+  }
   
 }
