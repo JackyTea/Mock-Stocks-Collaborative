@@ -35,6 +35,8 @@
 /backend/.env.production.local
 # environment
 /backend/.env
+# compiled Javascript files
+/backend/dist
 
 ## VSCODE ##
 # vscode
