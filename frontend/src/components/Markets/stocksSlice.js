@@ -4,6 +4,7 @@ import { fetchStocks, fetchStock } from "@/api/index.js";
 // GET /stocks
 export const getStocks = createAsyncThunk("/stocks", async () => {
   const response = await fetchStocks();
+  console.log(response.data)
   return response.data;
 });
 

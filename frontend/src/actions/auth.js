@@ -14,7 +14,7 @@ import {
   USER_UPDATE_NAME,
 } from '@/constants/actions';
 
-// POST /user/login
+//POST /user/login
 export const loginUser = (formInput, router, state) => async (dispatch) => {
   try {
     const { data } = await login(formInput);
@@ -31,7 +31,7 @@ export const loginUser = (formInput, router, state) => async (dispatch) => {
     }
   }
 };
-
+/*
 // POST /user/register
 export const registerUser = (formInput, router, state) => async (dispatch) => {
   try {
@@ -102,3 +102,4 @@ export const removeUserAccount = (router) => async (dispatch) => {
     }
   }
 };
+  */

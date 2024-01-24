@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 import { getStock } from '@/actions/stocks';
-import { getUserInfo } from '@/actions/auth';
+import { getUserInfo } from '@/components/Auth/authSlice';
 import {
   getPurchase,
   addPurchase,

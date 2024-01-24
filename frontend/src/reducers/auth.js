@@ -1,4 +1,4 @@
-import {
+/* import {
   AUTH,
   DELETE_USER,
   LOGOUT,
@@ -33,4 +33,4 @@ const authReducer = (state = { authData: null }, action) => {
   }
 };
 
-export default authReducer;
+export default authReducer;  */

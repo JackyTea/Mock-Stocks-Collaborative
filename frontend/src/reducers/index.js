@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
 import stocksReducer from './stocks';
-import authReducer from './auth';
+/* import authReducer from './auth'; */
 import purchasedReducer from './purchased';
 import transactionsReducer from './transactions';
 import logsReducer from './logs';
@@ -16,7 +16,7 @@ import { LOGOUT } from '@/constants/actions';
 
 const appReducer = combineReducers({
   stocksReducer,
-  authReducer,
+ /*  authReducer, */
   purchasedReducer,
   transactionsReducer,
   logsReducer,

@@ -3,7 +3,7 @@ import { Link, NavLink, useNavigate, useLocation } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { jwtDecode } from 'jwt-decode';
 import ToggleTheme from '@/components/ToggleTheme/ToggleTheme';
-import { getUserInfo } from '@/actions/auth';
+import { getUserInfo } from '@/components/Auth/authSlice';
 import { LOGOUT } from '@/constants/actions';
 import DefaultAvatarImage from '@/assets/images/avatar.jpg';
 

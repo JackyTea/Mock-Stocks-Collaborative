@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 // axios instance
-const api = axios.create({ baseURL: import.meta.env.VITE_STOCKS_API });
+export const api = axios.create({ baseURL: import.meta.env.VITE_STOCKS_API });
 
 // send jwt token in request if user is logged in
 api.interceptors.request.use((req) => {
