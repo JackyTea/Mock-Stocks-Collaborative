@@ -1,7 +1,6 @@
 import React from 'react';
 import { createRoot } from 'react-dom/client';
 import ReactDOM from 'react-dom';
-import thunk from 'redux-thunk';
 import { Provider } from 'react-redux';
 import { reducer } from './reducers';
 import { BrowserRouter } from 'react-router-dom';

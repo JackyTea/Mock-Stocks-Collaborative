@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import socketIOClient from 'socket.io-client';
-import { getStocks } from '@/actions/stocks';
+import { getStocks, getStock, getStocksList, getStocksStatus, getStocksError } from '../stocksSlice';
 import {
   SORT_STOCKS_BY_FIELD,
   MARKET_ERROR_OCCURRED,
@@ -16,7 +16,7 @@ const StockView = () => {
     transports: ['websocket', 'polling', 'flashsocket'],
   });
   const errors = useSelector((state) => state.marketErrorsReducer);
-  const stocks = useSelector((state) => state.stocksReducer);
+  const stocks = useSelector(getStocksList);
   const [isListMode, setIsListMode] = useState(true);
   const [searchFilter, setSearchFilter] = useState('');
   const [sortById, setSortById] = useState(true);
@@ -26,10 +26,13 @@ const StockView = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [stocksPerPage] = useState(12);
   const dispatch = useDispatch();
+  const stockStatus = useSelector(getStocksStatus)
 
   useEffect(() => {
-    dispatch(getStocks());
-  }, [dispatch]);
+    if (stockStatus === 'idle') {
+        dispatch(getStocks())
+    }
+}, [stockStatus, dispatch])
 
   useEffect(() => {
     socket.connect();

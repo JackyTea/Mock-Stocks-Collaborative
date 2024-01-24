@@ -1,14 +1,17 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { fetchStocks, fetchStock } from "@/api/index.js";
+import axios from 'axios';
+
+// axios instance
+export const api = axios.create({ baseURL: import.meta.env.VITE_STOCKS_API });
+
 
 // GET /stocks
-export const getStocks = createAsyncThunk("/stocks", async () => {
-  const response = await fetchStocks();
+export const getStocks = createAsyncThunk(api.get('/stocks'), async () => {
+  const response = await api.get('/stocks');
   console.log(response.data)
   return response.data;
 });
-
-// GET /stocks/:id
 
 export const getStock = createAsyncThunk("/stocks/${id}", async () => {
   const response = await fetchStock(id);
