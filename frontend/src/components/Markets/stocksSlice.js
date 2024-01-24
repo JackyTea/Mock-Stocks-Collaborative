@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { fetchStocks, fetchStock } from "@/api/index.js";
+import { fetchStock } from "@/api/index.js";
 import axios from 'axios';
 
 // axios instance

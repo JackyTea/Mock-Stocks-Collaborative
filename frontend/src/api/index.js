@@ -22,7 +22,7 @@ export const updateUsername = (formInput) =>
 export const removeUser = () => api.delete('/user/removeuser');
 
 // available market stocks
-export const fetchStocks = () => api.get('/stocks');
+/* export const fetchStocks = () => api.get('/stocks'); */
 export const fetchStock = (id) => api.get(`/stocks/${id}`);
 
 // user bought stocks

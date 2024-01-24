@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getStocks } from '@/actions/stocks';
+import { getStocks } from '@/components/Markets/stocksSlice';
 import { MARKET_ERROR_OCCURRED } from '@/constants/actions';
 import socketIOClient from 'socket.io-client';
 import ShowcaseCardSkeleton from './ShowcaseCardSkeleton';

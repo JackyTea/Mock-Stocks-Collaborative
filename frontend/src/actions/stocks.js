@@ -1,4 +1,4 @@
-import { fetchStocks, fetchStock } from '@/api/index.js';
+import { fetchStock } from '@/api/index.js';
 import {
   GET_ALL_STOCKS,
   GET_ONE_STOCK,
@@ -6,7 +6,7 @@ import {
 } from '@/constants/actions';
 
 // GET /stocks
-export const getStocks = () => async (dispatch) => {
+/* export const getStocks = () => async (dispatch) => {
   try {
     const { data } = await fetchStocks();
     dispatch({ type: GET_ALL_STOCKS, payload: data });
@@ -20,7 +20,7 @@ export const getStocks = () => async (dispatch) => {
       dispatch({ type: MARKET_ERROR_OCCURRED, payload: 'Markets are down!' });
     }
   }
-};
+}; */
 
 // GET /stocks/:id
 export const getStock = (id) => async (dispatch) => {
